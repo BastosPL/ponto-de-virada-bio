@@ -425,6 +425,16 @@
         }
         .btn-secondary:hover { border-color: rgba(212,175,55,0.2); color: #d4af37; }
         .uses-info { text-align: center; font-size: 11px; color: #444; margin-top: 12px; }
+        .unlock-banner {
+            text-align: center;
+            padding: 10px 16px;
+            margin: 12px 0;
+            background: rgba(16,185,129,0.06);
+            border: 1px solid rgba(16,185,129,0.15);
+            border-radius: 10px;
+            font-size: 13px;
+            color: #34d399;
+        }
         .disclaimer {
             text-align: center;
             margin-top: 24px;
@@ -597,31 +607,67 @@
         }
     ];
 
+    // ===== CONFIG =====
+    // IMPORTANTE: Substitua pela URL do produto "Relatório de Ansiedade" no Kiwify (R$ 9,90)
+    // Na configuração do produto no Kiwify, coloque como URL de redirecionamento pós-compra:
+    // https://ponto-de-virada-bio.vercel.app/teste.html?report=unlocked
+    const KIWIFY_REPORT_URL = 'https://pay.kiwify.com.br/SEULINKAQUI';
+    const KIWIFY_EBOOK_URL = 'https://pay.kiwify.com.br/RsaVbrP';
+
     // ===== STATE =====
     const STORAGE_KEY = 'pv_quiz_uses';
+    const REPORT_KEY = 'pv_report_unlocked';
     const MAX_FREE = 2;
     let currentQ = 0;
-    let answers = []; // array of arrays (selected indices per question)
+    let answers = [];
     let currentSelected = [];
 
-    // ===== USES TRACKING =====
+    // ===== DETECT PAYMENT RETURN =====
+    (function checkPaymentReturn() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('report') === 'unlocked') {
+            // Veio do Kiwify após pagamento — liberar relatório permanentemente
+            try { localStorage.setItem(REPORT_KEY, 'true'); } catch {}
+            // Limpar a URL (sem recarregar)
+            window.history.replaceState({}, '', window.location.pathname);
+            // Mostrar mensagem de sucesso
+            setTimeout(() => {
+                const intro = document.getElementById('intro');
+                if (intro && !intro.classList.contains('hidden')) {
+                    const msg = document.createElement('div');
+                    msg.style.cssText = 'text-align:center;padding:12px 20px;margin:16px 0;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:10px;color:#34d399;font-size:14px;font-weight:600;';
+                    msg.textContent = '✅ Pagamento confirmado! Seu relatório detalhado está liberado permanentemente.';
+                    intro.querySelector('.header').after(msg);
+                }
+            }, 100);
+        }
+    })();
+
+    // ===== USES & PAYMENT TRACKING =====
     function getUses() {
         try { return parseInt(localStorage.getItem(STORAGE_KEY)) || 0; } catch { return 0; }
     }
     function addUse() {
         try { localStorage.setItem(STORAGE_KEY, getUses() + 1); } catch {}
     }
-    function isFree() { return getUses() < MAX_FREE; }
+    function isReportUnlocked() {
+        try { return localStorage.getItem(REPORT_KEY) === 'true'; } catch { return false; }
+    }
+    function isFree() {
+        return isReportUnlocked() || getUses() < MAX_FREE;
+    }
 
     function updateUsesInfo() {
         const el = document.getElementById('uses-info');
         const uses = getUses();
-        if (uses === 0) {
+        if (isReportUnlocked()) {
+            el.innerHTML = '🔓 <strong style="color:#34d399">Relatório desbloqueado</strong> — faça quantos testes quiser!';
+        } else if (uses === 0) {
             el.textContent = 'Você tem 2 testes gratuitos com relatório detalhado';
         } else if (uses === 1) {
             el.textContent = 'Você tem 1 teste gratuito restante com relatório detalhado';
         } else {
-            el.textContent = 'Seus testes gratuitos acabaram — resultado básico continua grátis';
+            el.textContent = 'Resultado básico gratuito · Relatório completo: R$ 9,90';
         }
     }
     updateUsesInfo();
@@ -777,9 +823,11 @@
         `;
 
         if (free) {
+            // RELATÓRIO COMPLETO (grátis nas 2 primeiras vezes OU se pagou)
             html += `
                 <div class="report-preview">
                     <h3>📋 Seu Relatório Personalizado</h3>
+                    ${isReportUnlocked() ? '<div style="font-size:11px;color:#34d399;margin-bottom:10px">🔓 Relatório permanente desbloqueado</div>' : ''}
                     <ul class="report-items">
                         <li><span class="check">✓</span> ${getInsight('physical')}</li>
                         <li><span class="check">✓</span> ${getInsight('thinking')}</li>
@@ -790,11 +838,12 @@
                 </div>
                 <div class="actions">
                     <a href="tecnicas.html" class="paywall-btn" style="text-align:center">Ver Todas as 5 Técnicas →</a>
-                    <a href="https://pay.kiwify.com.br/RsaVbrP" class="btn-secondary" target="_blank" rel="noopener">Conhecer o Módulo de Ação Completo</a>
+                    <a href="${KIWIFY_EBOOK_URL}" class="btn-secondary" target="_blank" rel="noopener">Conhecer o Módulo de Ação Completo</a>
                     <button class="btn-secondary" onclick="retry()">Refazer o Teste Agora</button>
                 </div>
             `;
         } else {
+            // PAYWALL — relatório trancado, precisa pagar
             html += `
                 <div class="report-preview">
                     <h3>📋 Relatório Personalizado</h3>
@@ -810,12 +859,13 @@
                 <div class="paywall-box">
                     <h3>Desbloqueie seu Relatório Completo</h3>
                     <div class="price">R$ 9,90</div>
-                    <div class="price-note">Pagamento único — acesso imediato</div>
+                    <div class="price-note">Pagamento único — relatórios ilimitados para sempre</div>
                     <div class="bonus">🎁 Inclui cupom 20% OFF no Módulo de Ação</div>
-                    <a href="https://pay.kiwify.com.br/RsaVbrP" class="paywall-btn" target="_blank" rel="noopener">Desbloquear Relatório →</a>
+                    <a href="${KIWIFY_REPORT_URL}" class="paywall-btn">Desbloquear Relatório →</a>
                 </div>
                 <div class="actions">
                     <a href="tecnicas.html" class="btn-secondary">Ver Todas as 5 Técnicas</a>
+                    <a href="${KIWIFY_EBOOK_URL}" class="btn-secondary" target="_blank" rel="noopener">Conhecer o Módulo de Ação Completo</a>
                     <button class="btn-secondary" onclick="retry()">Refazer o Teste Agora</button>
                 </div>
             `;
