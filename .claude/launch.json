@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "bio-page",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "C:\\Users\\patri\\OneDrive\\Desktop\\ponto-de-virada-bio", "-l", "3456"],
+      "port": 3456
+    }
+  ]
+}
