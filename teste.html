@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste: Qual seu Nível de Ansiedade? | Ponto de Virada</title>
+    <meta name="description" content="Descubra seu nível de ansiedade em 2 minutos com este teste gratuito baseado em escalas clínicas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #080808;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .container {
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 32px 20px 60px;
+            position: relative;
+            z-index: 1;
+        }
+        .back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #555;
+            text-decoration: none;
+            font-size: 13px;
+            margin-bottom: 24px;
+            transition: color 0.3s;
+        }
+        .back:hover { color: #d4af37; }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .header .icon { font-size: 40px; margin-bottom: 12px; }
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f5e6a3, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        .header p {
+            font-size: 14px;
+            color: #777;
+            line-height: 1.5;
+        }
+
+        /* Progress */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 4px;
+            margin-bottom: 28px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37, #f5e6a3);
+            border-radius: 4px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+        .progress-text {
+            text-align: center;
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Question */
+        .question-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 28px 24px;
+            margin-bottom: 16px;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .question-card h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+            color: #bbb;
+        }
+        .option:hover {
+            border-color: rgba(212,175,55,0.3);
+            background: rgba(212,175,55,0.04);
+        }
+        .option.selected {
+            border-color: #d4af37;
+            background: rgba(212,175,55,0.08);
+            color: #fff;
+        }
+        .option .radio {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .option.selected .radio {
+            border-color: #d4af37;
+            background: #d4af37;
+        }
+        .option.selected .radio::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #080808;
+        }
+
+        /* Results */
+        .result-card {
+            text-align: center;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 32px 24px;
+            animation: fadeIn 0.4s ease;
+        }
+        .result-level {
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+        .result-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .result-subtitle {
+            font-size: 13px;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        .result-score {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .result-desc {
+            font-size: 14px;
+            color: #999;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        /* Score Bar */
+        .score-visual {
+            margin-bottom: 24px;
+        }
+        .score-bar-bg {
+            width: 100%;
+            height: 10px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        .score-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+        .score-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #555;
+        }
+
+        /* Detailed Report (paywall) */
+        .report-preview {
+            background: rgba(212,175,55,0.04);
+            border: 1px solid rgba(212,175,55,0.12);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .report-preview h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+        .report-items {
+            list-style: none;
+        }
+        .report-items li {
+            font-size: 13px;
+            padding: 6px 0;
+            color: #888;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .report-items .lock { opacity: 0.4; }
+        .report-items .check { color: #34d399; }
+
+        /* Paywall */
+        .paywall-box {
+            background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(184,134,11,0.04));
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .paywall-box h3 {
+            font-size: 17px;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .paywall-box .price {
+            font-size: 28px;
+            font-weight: 800;
+            color: #d4af37;
+            margin-bottom: 4px;
+        }
+        .paywall-box .price-note {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 14px;
+        }
+        .paywall-box .bonus {
+            display: inline-block;
+            font-size: 11px;
+            padding: 4px 12px;
+            background: rgba(16,185,129,0.1);
+            color: #34d399;
+            border-radius: 100px;
+            margin-bottom: 14px;
+        }
+        .paywall-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            color: #080808;
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(212,175,55,0.25);
+            text-decoration: none;
+        }
+        .paywall-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212,175,55,0.35);
+        }
+
+        /* Retry / CTA */
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .btn-secondary {
+            display: block;
+            padding: 12px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #999;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn-secondary:hover {
+            border-color: rgba(212,175,55,0.2);
+            color: #d4af37;
+        }
+
+        /* Uses counter */
+        .uses-info {
+            text-align: center;
+            font-size: 11px;
+            color: #444;
+            margin-top: 12px;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            text-align: center;
+            margin-top: 24px;
+            padding: 14px;
+            font-size: 10px;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        /* Hidden */
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back">&#8249; Voltar</a>
+
+        <!-- INTRO -->
+        <div id="intro">
+            <div class="header">
+                <div class="icon">🧪</div>
+                <h1>Qual é o Seu Nível de Ansiedade?</h1>
+                <p>10 perguntas rápidas baseadas em escalas clínicas. Resultado imediato e gratuito.</p>
+            </div>
+            <div style="text-align:center">
+                <button class="paywall-btn" onclick="startQuiz()" style="max-width:300px;margin:0 auto">Começar o Teste →</button>
+            </div>
+            <div class="uses-info" id="uses-info"></div>
+        </div>
+
+        <!-- QUIZ -->
+        <div id="quiz" class="hidden">
+            <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+            <div class="progress-text" id="progress-text"></div>
+            <div id="question-container"></div>
+        </div>
+
+        <!-- RESULT -->
+        <div id="result" class="hidden"></div>
+
+        <div class="disclaimer">
+            ⚕️ Este teste tem caráter informativo e educacional. <strong>Não constitui diagnóstico clínico.</strong> Não substitui avaliação por profissional de saúde mental. Se você está em crise, ligue <strong>CVV: 188</strong>.
+        </div>
+    </div>
+
+    <script>
+    // ===== QUIZ DATA =====
+    const questions = [
+        {
+            q: "Com que frequência você sente um nó no estômago ou aperto no peito sem motivo claro?",
+            opts: ["Quase nunca", "Às vezes", "Frequentemente", "Quase todo dia"]
+        },
+        {
+            q: "Você costuma antecipar problemas que ainda nem aconteceram?",
+            opts: ["Raramente", "De vez em quando", "Com frequência", "O tempo todo — minha mente não para"]
+        },
+        {
+            q: "Como está seu sono atualmente?",
+            opts: ["Durmo bem na maioria das noites", "Demoro um pouco para pegar no sono", "Acordo várias vezes ou demoro muito", "Insônia frequente ou sono muito agitado"]
+        },
+        {
+            q: "Quando precisa tomar uma decisão simples, como se sente?",
+            opts: ["Tranquilo, decido rápido", "Um pouco indeciso, mas resolvo", "Fico ansioso e inseguro", "Paraliso — tenho medo de errar"]
+        },
+        {
+            q: "Com que frequência você sente que algo ruim vai acontecer, mesmo sem evidências?",
+            opts: ["Quase nunca", "Algumas vezes por mês", "Algumas vezes por semana", "Praticamente todo dia"]
+        },
+        {
+            q: "Você evita situações sociais ou compromissos por causa da ansiedade?",
+            opts: ["Não, participo normalmente", "Às vezes evito, mas vou quando preciso", "Evito com frequência", "Evito a maioria — saio o mínimo possível"]
+        },
+        {
+            q: "Como você descreveria seus pensamentos repetitivos (overthinking)?",
+            opts: ["Não tenho esse problema", "Acontece às vezes, mas consigo parar", "Frequente e difícil de controlar", "Constante — minha mente não desliga"]
+        },
+        {
+            q: "Você já sentiu sintomas físicos como tremor, sudorese, coração acelerado sem exercício?",
+            opts: ["Nunca ou raramente", "Às vezes em situações de estresse", "Com frequência, sem motivo aparente", "Frequentemente — já achei que era algo cardíaco"]
+        },
+        {
+            q: "Quando algo dá errado, qual sua primeira reação?",
+            opts: ["Penso em soluções práticas", "Fico preocupado mas busco resolver", "Entro em espiral de pensamentos negativos", "Pânico — sinto que tudo vai desmoronar"]
+        },
+        {
+            q: "Como a ansiedade afeta seu dia a dia (trabalho, relações, lazer)?",
+            opts: ["Não afeta significativamente", "Atrapalha um pouco, mas lido bem", "Afeta bastante minha produtividade e humor", "Domina minha rotina — sinto que perdi o controle"]
+        }
+    ];
+
+    // ===== RESULTS =====
+    const levels = [
+        {
+            min: 0, max: 10,
+            emoji: "🟢", title: "Nível Leve",
+            subtitle: "Ansiedade dentro do esperado",
+            color: "#34d399",
+            desc: "Sua ansiedade está em níveis normais e saudáveis. Todos sentem ansiedade em algum grau — é um mecanismo natural de proteção. Continue mantendo hábitos saudáveis e práticas de autocuidado."
+        },
+        {
+            min: 11, max: 20,
+            emoji: "🟡", title: "Nível Moderado",
+            subtitle: "Atenção aos sinais",
+            color: "#fbbf24",
+            desc: "Sua ansiedade já começa a ultrapassar o funcional. Você provavelmente sente desconforto com frequência e isso pode estar afetando seu sono, foco ou relações. É o momento ideal para agir — técnicas de manejo podem fazer grande diferença antes que escale."
+        },
+        {
+            min: 21, max: 30,
+            emoji: "🟠", title: "Nível Alto",
+            subtitle: "A ansiedade está controlando você",
+            color: "#f97316",
+            desc: "Sua ansiedade está em nível significativo. É provável que você esteja enfrentando sintomas físicos frequentes, dificuldade para dormir, overthinking constante e evitação de situações. Isso não é fraqueza — é sobrecarga. Técnicas de manejo + acompanhamento profissional são altamente recomendados."
+        }
+    ];
+
+    // ===== STATE =====
+    const STORAGE_KEY = 'pv_quiz_uses';
+    const MAX_FREE = 2;
+    let currentQ = 0;
+    let answers = [];
+
+    // ===== USES TRACKING =====
+    function getUses() {
+        try {
+            return parseInt(localStorage.getItem(STORAGE_KEY)) || 0;
+        } catch { return 0; }
+    }
+    function addUse() {
+        try {
+            localStorage.setItem(STORAGE_KEY, getUses() + 1);
+        } catch {}
+    }
+    function isFree() {
+        return getUses() < MAX_FREE;
+    }
+
+    // Show uses info on intro
+    function updateUsesInfo() {
+        const el = document.getElementById('uses-info');
+        const uses = getUses();
+        if (uses === 0) {
+            el.textContent = 'Você tem 2 testes gratuitos com relatório detalhado';
+        } else if (uses === 1) {
+            el.textContent = 'Você tem 1 teste gratuito restante com relatório detalhado';
+        } else {
+            el.textContent = 'Seus testes gratuitos acabaram — resultado básico continua grátis';
+        }
+    }
+    updateUsesInfo();
+
+    // ===== QUIZ FLOW =====
+    function startQuiz() {
+        currentQ = 0;
+        answers = [];
+        document.getElementById('intro').classList.add('hidden');
+        document.getElementById('result').classList.add('hidden');
+        document.getElementById('quiz').classList.remove('hidden');
+        showQuestion();
+    }
+
+    function showQuestion() {
+        const q = questions[currentQ];
+        const total = questions.length;
+        document.getElementById('progress').style.width = ((currentQ / total) * 100) + '%';
+        document.getElementById('progress-text').textContent = `Pergunta ${currentQ + 1} de ${total}`;
+
+        const container = document.getElementById('question-container');
+        container.innerHTML = `
+            <div class="question-card">
+                <h2>${q.q}</h2>
+                <div class="options">
+                    ${q.opts.map((opt, i) => `
+                        <div class="option" onclick="selectAnswer(${i}, this)">
+                            <div class="radio"></div>
+                            <span>${opt}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    function selectAnswer(value, el) {
+        // Visual feedback
+        el.parentElement.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        el.classList.add('selected');
+
+        answers.push(value);
+
+        // Auto-advance after short delay
+        setTimeout(() => {
+            currentQ++;
+            if (currentQ < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }, 400);
+    }
+
+    function showResult() {
+        document.getElementById('quiz').classList.add('hidden');
+        document.getElementById('result').classList.remove('hidden');
+
+        const score = answers.reduce((a, b) => a + b, 0);
+        const level = levels.find(l => score >= l.min && score <= l.max) || levels[2];
+        const pct = Math.round((score / 30) * 100);
+
+        const free = isFree();
+        addUse();
+
+        let html = `
+            <div class="result-card">
+                <div class="result-level">${level.emoji}</div>
+                <div class="result-title" style="color:${level.color}">${level.title}</div>
+                <div class="result-subtitle">${level.subtitle}</div>
+                <div class="result-score">Pontuação: ${score}/30</div>
+
+                <div class="score-visual">
+                    <div class="score-bar-bg">
+                        <div class="score-bar-fill" id="score-bar" style="width:0%;background:${level.color}"></div>
+                    </div>
+                    <div class="score-labels">
+                        <span>Leve</span>
+                        <span>Moderado</span>
+                        <span>Alto</span>
+                    </div>
+                </div>
+
+                <div class="result-desc">${level.desc}</div>
+        `;
+
+        if (free) {
+            // FREE: show full report
+            html += `
+                <div class="report-preview">
+                    <h3>📋 Seu Relatório Personalizado</h3>
+                    <ul class="report-items">
+                        <li><span class="check">✓</span> ${getInsight(score, 'sleep')}</li>
+                        <li><span class="check">✓</span> ${getInsight(score, 'thinking')}</li>
+                        <li><span class="check">✓</span> ${getInsight(score, 'physical')}</li>
+                        <li><span class="check">✓</span> ${getInsight(score, 'action')}</li>
+                    </ul>
+                </div>
+
+                <div class="actions">
+                    <a href="tecnicas.html" class="paywall-btn" style="text-align:center">Ver 5 Técnicas Gratuitas →</a>
+                    <a href="https://pay.kiwify.com.br/RsaVbrP" class="btn-secondary" target="_blank" rel="noopener">Conhecer o Módulo de Ação Completo</a>
+                    <button class="btn-secondary" onclick="retry()">Refazer o Teste</button>
+                </div>
+            `;
+        } else {
+            // PAID: show blurred/locked report
+            html += `
+                <div class="report-preview">
+                    <h3>📋 Relatório Personalizado</h3>
+                    <ul class="report-items">
+                        <li><span class="check">✓</span> Nível geral: ${level.title}</li>
+                        <li><span class="lock">🔒</span> Análise do padrão de sono</li>
+                        <li><span class="lock">🔒</span> Perfil de pensamentos recorrentes</li>
+                        <li><span class="lock">🔒</span> Sintomas físicos identificados</li>
+                        <li><span class="lock">🔒</span> Plano de ação personalizado</li>
+                    </ul>
+                </div>
+
+                <div class="paywall-box">
+                    <h3>Desbloqueie seu Relatório Completo</h3>
+                    <div class="price">R$ 9,90</div>
+                    <div class="price-note">Pagamento único — acesso imediato</div>
+                    <div class="bonus">🎁 Inclui cupom 20% OFF no Módulo de Ação</div>
+                    <a href="https://pay.kiwify.com.br/RsaVbrP" class="paywall-btn" target="_blank" rel="noopener">Desbloquear Relatório →</a>
+                </div>
+
+                <div class="actions">
+                    <a href="tecnicas.html" class="btn-secondary">Ver 5 Técnicas Gratuitas</a>
+                    <button class="btn-secondary" onclick="retry()">Refazer o Teste</button>
+                </div>
+            `;
+        }
+
+        html += `</div>`;
+        document.getElementById('result').innerHTML = html;
+
+        // Animate score bar
+        setTimeout(() => {
+            const bar = document.getElementById('score-bar');
+            if (bar) bar.style.width = pct + '%';
+        }, 200);
+
+        updateUsesInfo();
+    }
+
+    // ===== PERSONALIZED INSIGHTS =====
+    function getInsight(score, area) {
+        if (area === 'sleep') {
+            const sleepAns = answers[2] || 0;
+            if (sleepAns <= 1) return "Seu sono parece estar razoável. Manter uma rotina noturna ajuda a preservar isso.";
+            if (sleepAns === 2) return "Seu sono está sendo afetado. A técnica de Descarrego Mental antes de dormir pode ajudar muito.";
+            return "Seu sono está comprometido pela ansiedade. Priorize: Respiração 4-7-8 + Descarrego Mental antes de deitar.";
+        }
+        if (area === 'thinking') {
+            const thinkAns = answers[6] || 0;
+            if (thinkAns <= 1) return "Seus pensamentos repetitivos estão controlados. Continue praticando o foco no presente.";
+            if (thinkAns === 2) return "O overthinking é um ponto de atenção. Experimente a técnica de Nomear o Pensamento.";
+            return "Overthinking é seu maior desafio. Use: Limite de Preocupação (15 min/dia) + Nomear o Pensamento.";
+        }
+        if (area === 'physical') {
+            const physAns = answers[7] || 0;
+            if (physAns <= 1) return "Sintomas físicos mínimos — bom sinal. Mantenha atividade física regular.";
+            if (physAns === 2) return "Sintomas físicos frequentes indicam que o corpo está em alerta. Respiração 4-7-8 é sua aliada.";
+            return "Sintomas físicos intensos. Além das técnicas, considere buscar avaliação profissional para descartar causas médicas.";
+        }
+        if (area === 'action') {
+            if (score <= 10) return "Ação sugerida: mantenha seus hábitos saudáveis e pratique as 5 técnicas preventivamente.";
+            if (score <= 20) return "Ação sugerida: pratique as 5 técnicas diariamente e considere o Módulo de Ação para aprofundar.";
+            return "Ação sugerida: comece as técnicas de emergência hoje + busque acompanhamento profissional. O Módulo de Ação pode complementar.";
+        }
+        return "";
+    }
+
+    function retry() {
+        document.getElementById('result').classList.add('hidden');
+        document.getElementById('intro').classList.remove('hidden');
+        updateUsesInfo();
+        window.scrollTo(0, 0);
+    }
+    </script>
+</body>
+</html>
