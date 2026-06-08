@@ -303,6 +303,111 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 30px rgba(212,175,55,0.35);
         }
+        /* Exercise cards */
+        .exercises-section {
+            margin: 24px 0;
+            text-align: left;
+        }
+        .exercises-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+        .exercises-section .exercises-intro {
+            font-size: 13px;
+            color: #777;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .exercise-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 12px;
+        }
+        .exercise-card .ex-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .exercise-card .ex-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .exercise-card .ex-icon.now {
+            background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(5,150,105,0.1));
+        }
+        .exercise-card .ex-icon.daily {
+            background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(184,134,11,0.1));
+        }
+        .exercise-card .ex-icon.night {
+            background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(79,70,229,0.1));
+        }
+        .exercise-card .ex-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .exercise-card .ex-when {
+            font-size: 11px;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .exercise-card .ex-steps {
+            list-style: none;
+            padding: 0;
+        }
+        .exercise-card .ex-steps li {
+            font-size: 13px;
+            color: #999;
+            padding: 5px 0 5px 20px;
+            position: relative;
+            line-height: 1.5;
+        }
+        .exercise-card .ex-steps li::before {
+            content: attr(data-n);
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            color: #d4af37;
+            font-size: 12px;
+        }
+        .exercise-card .ex-tip {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+        .retry-challenge {
+            text-align: center;
+            padding: 16px;
+            margin: 16px 0;
+            background: rgba(16,185,129,0.04);
+            border: 1px solid rgba(16,185,129,0.12);
+            border-radius: 12px;
+        }
+        .retry-challenge p {
+            font-size: 14px;
+            color: #bbb;
+            margin-bottom: 4px;
+        }
+        .retry-challenge .challenge-text {
+            font-size: 13px;
+            color: #34d399;
+            font-weight: 600;
+        }
+
         .actions { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
         .btn-secondary {
             display: block;
@@ -660,6 +765,15 @@
                 </div>
 
                 <div class="result-desc">${level.desc}</div>
+
+                <!-- EXERCÍCIOS PERSONALIZADOS (sempre grátis) -->
+                ${getExercisesHTML(score, level)}
+
+                <!-- DESAFIO DE RETORNO -->
+                <div class="retry-challenge">
+                    <p>Pratique os exercícios acima por alguns dias e depois...</p>
+                    <div class="challenge-text">Refaça o teste e veja sua evolução!</div>
+                </div>
         `;
 
         if (free) {
@@ -675,9 +789,9 @@
                     </ul>
                 </div>
                 <div class="actions">
-                    <a href="tecnicas.html" class="paywall-btn" style="text-align:center">Ver 5 Técnicas Gratuitas →</a>
+                    <a href="tecnicas.html" class="paywall-btn" style="text-align:center">Ver Todas as 5 Técnicas →</a>
                     <a href="https://pay.kiwify.com.br/RsaVbrP" class="btn-secondary" target="_blank" rel="noopener">Conhecer o Módulo de Ação Completo</a>
-                    <button class="btn-secondary" onclick="retry()">Refazer o Teste</button>
+                    <button class="btn-secondary" onclick="retry()">Refazer o Teste Agora</button>
                 </div>
             `;
         } else {
@@ -701,8 +815,8 @@
                     <a href="https://pay.kiwify.com.br/RsaVbrP" class="paywall-btn" target="_blank" rel="noopener">Desbloquear Relatório →</a>
                 </div>
                 <div class="actions">
-                    <a href="tecnicas.html" class="btn-secondary">Ver 5 Técnicas Gratuitas</a>
-                    <button class="btn-secondary" onclick="retry()">Refazer o Teste</button>
+                    <a href="tecnicas.html" class="btn-secondary">Ver Todas as 5 Técnicas</a>
+                    <button class="btn-secondary" onclick="retry()">Refazer o Teste Agora</button>
                 </div>
             `;
         }
@@ -714,6 +828,153 @@
             if (bar) bar.style.width = pct + '%';
         }, 200);
         updateUsesInfo();
+    }
+
+    // ===== EXERCÍCIOS PERSONALIZADOS POR NÍVEL =====
+    function getExercisesHTML(score, level) {
+        let exercises = [];
+
+        if (score <= 8) {
+            // NÍVEL LEVE — exercícios preventivos
+            exercises = [
+                {
+                    icon: "🌬️", type: "now", when: "Faça agora (2 min)",
+                    title: "Respiração Consciente",
+                    steps: [
+                        "Feche os olhos e inspire profundamente por 4 segundos",
+                        "Segure por 4 segundos — sinta o ar nos pulmões",
+                        "Expire lentamente por 4 segundos",
+                        "Repita 3 vezes. Perceba como seu corpo relaxa"
+                    ],
+                    tip: "Faça isso 1x por dia para manter a ansiedade no nível saudável."
+                },
+                {
+                    icon: "📝", type: "daily", when: "Durante o dia",
+                    title: "Gratidão Relâmpago",
+                    steps: [
+                        "Pare por 30 segundos em qualquer momento do dia",
+                        "Pense em 3 coisas boas que aconteceram hoje (por menores que sejam)",
+                        "Sinta cada uma por alguns segundos — não apenas liste"
+                    ],
+                    tip: "Gratidão reconecta o cérebro ao positivo. Faça por 7 dias e note a diferença."
+                },
+                {
+                    icon: "🧘", type: "night", when: "Antes de dormir",
+                    title: "Body Scan Express",
+                    steps: [
+                        "Deitado, feche os olhos e respire fundo",
+                        "Percorra mentalmente cada parte do corpo: pés → pernas → tronco → braços → cabeça",
+                        "Em cada parte, relaxe conscientemente os músculos",
+                        "Ao chegar na cabeça, deixe a mente ir se desligando"
+                    ],
+                    tip: "Excelente para manter o sono de qualidade. Leva 3-5 minutos."
+                }
+            ];
+        } else if (score <= 18) {
+            // NÍVEL MODERADO — exercícios de manejo ativo
+            exercises = [
+                {
+                    icon: "🌬️", type: "now", when: "Faça agora (3 min)",
+                    title: "Respiração 4-7-8 (Anti-Crise)",
+                    steps: [
+                        "Inspire pelo nariz contando até 4",
+                        "Segure a respiração por 7 segundos — relaxe os ombros",
+                        "Expire pela boca lentamente contando até 8",
+                        "Repita 4 ciclos. Seu coração vai desacelerar visivelmente"
+                    ],
+                    tip: "Esta técnica ativa o sistema nervoso parassimpático. Efeito em menos de 2 minutos."
+                },
+                {
+                    icon: "🧠", type: "daily", when: "Quando surgir preocupação",
+                    title: "Nomear + Adiar o Pensamento",
+                    steps: [
+                        "Quando um pensamento ansioso surgir, diga: \"Estou tendo um pensamento de preocupação\"",
+                        "Anote em 1 frase no celular ou papel",
+                        "Diga: \"Vou pensar nisso às 18h\" (horário fixo)",
+                        "Redirecione o foco para o que estava fazendo"
+                    ],
+                    tip: "Combina duas técnicas poderosas: Nomear o Pensamento + Limite de Preocupação. Use diariamente."
+                },
+                {
+                    icon: "📓", type: "night", when: "Antes de dormir (5 min)",
+                    title: "Descarrego Mental Noturno",
+                    steps: [
+                        "Pegue papel ou abra o bloco de notas do celular",
+                        "Escreva TUDO que está na sua cabeça — sem filtro, sem ordem",
+                        "Escolha UMA ação concreta para amanhã",
+                        "Feche e diga: \"Já fiz o que podia. O resto pode esperar.\""
+                    ],
+                    tip: "Esvazia os \"loops abertos\" do cérebro. Em 1 semana seu sono melhora visivelmente."
+                }
+            ];
+        } else {
+            // NÍVEL ALTO — exercícios de emergência + rotina
+            exercises = [
+                {
+                    icon: "🚨", type: "now", when: "Faça agora mesmo",
+                    title: "Aterramento de Emergência (5 Sentidos)",
+                    steps: [
+                        "Olhe ao redor: nomeie 5 coisas que você VÊ (cor, forma, detalhe)",
+                        "Toque 4 texturas diferentes ao seu alcance",
+                        "Identifique 3 sons distintos (perto, longe)",
+                        "Perceba 2 cheiros e 1 sabor na sua boca",
+                        "Respire fundo. Você está aqui. Está seguro(a)."
+                    ],
+                    tip: "Esta técnica puxa você para o presente imediatamente. Use sempre que sentir a crise chegando."
+                },
+                {
+                    icon: "🌬️", type: "daily", when: "3x ao dia (manhã, tarde, noite)",
+                    title: "Protocolo Respiratório 4-7-8",
+                    steps: [
+                        "Inspire 4s → Segure 7s → Expire 8s",
+                        "Faça 4 ciclos de manhã ao acordar",
+                        "Repita 4 ciclos depois do almoço",
+                        "Faça 4 ciclos antes de dormir",
+                        "Se sentir crise chegando: faça imediatamente, em qualquer lugar"
+                    ],
+                    tip: "Não espere a crise para usar. Fazer 3x ao dia \"treina\" seu sistema nervoso a se acalmar mais rápido."
+                },
+                {
+                    icon: "📓", type: "night", when: "Todas as noites",
+                    title: "Ritual Noturno Anti-Ansiedade",
+                    steps: [
+                        "20 min antes de dormir: deixe o celular longe da cama",
+                        "Faça o Descarrego Mental: escreva tudo que está na cabeça",
+                        "Defina 1 ação para amanhã e feche o caderno",
+                        "Deite e faça a Respiração 4-7-8 (4 ciclos)",
+                        "Se pensamentos voltarem, repita: \"Já fiz o que podia\""
+                    ],
+                    tip: "Seu cérebro precisa de um \"ritual de desligamento\". Faça por 7 dias seguidos — é transformador."
+                }
+            ];
+        }
+
+        let html = `
+            <div class="exercises-section">
+                <h3>🎯 Seus Exercícios Personalizados</h3>
+                <p class="exercises-intro">Baseados no seu resultado — pratique e refaça o teste para ver sua evolução</p>
+        `;
+
+        exercises.forEach(ex => {
+            html += `
+                <div class="exercise-card">
+                    <div class="ex-header">
+                        <div class="ex-icon ${ex.type}">${ex.icon}</div>
+                        <div>
+                            <div class="ex-title">${ex.title}</div>
+                            <div class="ex-when">${ex.when}</div>
+                        </div>
+                    </div>
+                    <ul class="ex-steps">
+                        ${ex.steps.map((s, i) => `<li data-n="${i+1}.">${s}</li>`).join('')}
+                    </ul>
+                    <div class="ex-tip">💡 ${ex.tip}</div>
+                </div>
+            `;
+        });
+
+        html += `</div>`;
+        return html;
     }
 
     // ===== INSIGHTS BASED ON MULTI-SELECT =====
