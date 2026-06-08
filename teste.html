@@ -612,7 +612,7 @@
     // Na configuração do produto no Kiwify, coloque como URL de redirecionamento pós-compra:
     // https://ponto-de-virada-bio.vercel.app/teste.html?report=unlocked
     const KIWIFY_REPORT_URL = 'https://pay.kiwify.com.br/exc1A7u';
-    const KIWIFY_EBOOK_URL = 'https://pay.kiwify.com.br/RsaVbrP';
+    const KIWIFY_EBOOK_URL = 'ebooks.html';
 
     // ===== STATE =====
     const STORAGE_KEY = 'pv_quiz_uses';
@@ -838,7 +838,7 @@
                 </div>
                 <div class="actions">
                     <a href="tecnicas.html" class="paywall-btn" style="text-align:center">Ver Todas as 5 Técnicas →</a>
-                    <a href="${KIWIFY_EBOOK_URL}" class="btn-secondary" target="_blank" rel="noopener">Conhecer o Módulo de Ação Completo</a>
+                    <a href="${KIWIFY_EBOOK_URL}" class="btn-secondary">Ver Ebooks Profissionais</a>
                     <button class="btn-secondary" onclick="retry()">Refazer o Teste Agora</button>
                 </div>
             `;
@@ -860,12 +860,12 @@
                     <h3>Desbloqueie seu Relatório Completo</h3>
                     <div class="price">R$ 9,90</div>
                     <div class="price-note">Pagamento único — relatórios ilimitados para sempre</div>
-                    <div class="bonus">🎁 Inclui cupom 20% OFF no Módulo de Ação</div>
+                    <div class="bonus">🎁 Inclui acesso aos 5 ebooks profissionais com desconto</div>
                     <a href="${KIWIFY_REPORT_URL}" class="paywall-btn">Desbloquear Relatório →</a>
                 </div>
                 <div class="actions">
                     <a href="tecnicas.html" class="btn-secondary">Ver Todas as 5 Técnicas</a>
-                    <a href="${KIWIFY_EBOOK_URL}" class="btn-secondary" target="_blank" rel="noopener">Conhecer o Módulo de Ação Completo</a>
+                    <a href="${KIWIFY_EBOOK_URL}" class="btn-secondary">Ver Ebooks Profissionais</a>
                     <button class="btn-secondary" onclick="retry()">Refazer o Teste Agora</button>
                 </div>
             `;
@@ -1060,8 +1060,8 @@
         if (area === 'action') {
             const score = getScore();
             if (score <= 8) return "Ação: mantenha hábitos saudáveis e pratique as 5 técnicas preventivamente.";
-            if (score <= 18) return "Ação: pratique as 5 técnicas diariamente. O Módulo de Ação pode acelerar sua recuperação.";
-            return "Ação urgente: comece as técnicas de emergência hoje + busque acompanhamento profissional. O Módulo de Ação pode complementar o tratamento.";
+            if (score <= 18) return "Ação: pratique as 5 técnicas diariamente. Os ebooks profissionais podem acelerar sua recuperação.";
+            return "Ação urgente: comece as técnicas de emergência hoje + busque acompanhamento profissional. Os ebooks profissionais podem complementar o tratamento.";
         }
         return "";
     }

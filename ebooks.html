@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ebooks Profissionais sobre Ansiedade | Ponto de Virada</title>
+    <meta name="description" content="5 ebooks profissionais e aprofundados sobre ansiedade. De neurociência a planos práticos de 30 dias.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #080808;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .container {
+            max-width: 620px;
+            margin: 0 auto;
+            padding: 32px 20px 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Back */
+        .back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 24px;
+            transition: color 0.2s;
+        }
+        .back:hover { color: #d4af37; }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header .badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 14px;
+            border-radius: 100px;
+            background: rgba(212,175,55,0.12);
+            color: #d4af37;
+            border: 1px solid rgba(212,175,55,0.2);
+            margin-bottom: 16px;
+        }
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f5e6a3, #d4af37, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        .header p {
+            font-size: 15px;
+            color: #888;
+            line-height: 1.6;
+            max-width: 460px;
+            margin: 0 auto;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            margin-bottom: 36px;
+            padding: 16px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #d4af37;
+        }
+        .stat-label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        /* Ebook cards */
+        .ebook-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 36px;
+        }
+
+        .ebook-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .ebook-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(212,175,55,0.04), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .ebook-card:hover {
+            border-color: rgba(212,175,55,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212,175,55,0.06);
+        }
+        .ebook-card:hover::before { opacity: 1; }
+
+        .ebook-number {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: rgba(212,175,55,0.08);
+            line-height: 1;
+            z-index: 0;
+        }
+
+        .ebook-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .ebook-emoji {
+            font-size: 28px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .ebook-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .ebook-desc {
+            font-size: 13px;
+            color: #888;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .ebook-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+        .ebook-topic {
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 100px;
+            background: rgba(212,175,55,0.08);
+            color: #d4af37;
+            border: 1px solid rgba(212,175,55,0.12);
+        }
+
+        .ebook-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .ebook-pages {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .ebook-price {
+            font-size: 13px;
+            font-weight: 700;
+            color: #d4af37;
+        }
+        .ebook-price .old {
+            text-decoration: line-through;
+            color: #555;
+            font-weight: 400;
+            margin-right: 6px;
+            font-size: 12px;
+        }
+
+        .buy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            color: #080808;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .buy-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(212,175,55,0.3);
+        }
+
+        /* Bundle section */
+        .bundle {
+            background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(184,134,11,0.04));
+            border: 2px solid rgba(212,175,55,0.25);
+            border-radius: 20px;
+            padding: 28px 24px;
+            text-align: center;
+            margin-bottom: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+        .bundle::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(212,175,55,0.1), transparent 70%);
+        }
+        .bundle-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 14px;
+            border-radius: 100px;
+            background: rgba(239,68,68,0.12);
+            color: #f87171;
+            border: 1px solid rgba(239,68,68,0.2);
+            margin-bottom: 14px;
+        }
+        .bundle h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .bundle p {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        .bundle-price {
+            margin-bottom: 16px;
+        }
+        .bundle-price .old {
+            font-size: 16px;
+            text-decoration: line-through;
+            color: #666;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .bundle-price .new {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #d4af37;
+        }
+        .bundle-price .new small {
+            font-size: 16px;
+            font-weight: 400;
+            color: #888;
+        }
+        .bundle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            color: #080808;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .bundle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212,175,55,0.35);
+        }
+        .bundle-savings {
+            font-size: 12px;
+            color: #10b981;
+            margin-top: 10px;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            text-align: center;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .disclaimer p {
+            font-size: 10px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            color: #333;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .ebook-card {
+            opacity: 0;
+            animation: fadeUp 0.5s ease forwards;
+        }
+        .ebook-card:nth-child(1) { animation-delay: 0.1s; }
+        .ebook-card:nth-child(2) { animation-delay: 0.2s; }
+        .ebook-card:nth-child(3) { animation-delay: 0.3s; }
+        .ebook-card:nth-child(4) { animation-delay: 0.4s; }
+        .ebook-card:nth-child(5) { animation-delay: 0.5s; }
+
+        @media (max-width: 480px) {
+            .container { padding: 24px 16px 48px; }
+            .header h1 { font-size: 24px; }
+            .bundle h2 { font-size: 20px; }
+            .bundle-price .new { font-size: 30px; }
+            .stats { gap: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <a href="index.html" class="back">&larr; Voltar</a>
+
+        <div class="header">
+            <div class="badge">Conteúdo Profissional</div>
+            <h1>Ebooks sobre Ansiedade</h1>
+            <p>Guias aprofundados com base em neurociência, psicologia cognitiva e protocolos clínicos. Conhecimento que transforma.</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Ebooks</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">83</div>
+                <div class="stat-label">Páginas</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">30</div>
+                <div class="stat-label">Dias de plano</div>
+            </div>
+        </div>
+
+        <!-- BUNDLE DESTAQUE -->
+        <div class="bundle">
+            <div class="bundle-badge">Melhor oferta</div>
+            <h2>Pacote Completo — 5 Ebooks</h2>
+            <p>Todos os 5 ebooks com acesso imediato. Da neurociência à prática diária.</p>
+            <div class="bundle-price">
+                <span class="old">De R$ 84,50</span>
+                <span class="new">R$ 47,00 <small>à vista</small></span>
+            </div>
+            <a href="https://pay.kiwify.com.br/RsaVbrP" class="bundle-btn" target="_blank" rel="noopener">
+                Quero o Pacote Completo &rarr;
+            </a>
+            <div class="bundle-savings">Economia de R$ 37,50 (44% off)</div>
+        </div>
+
+        <div class="ebook-list">
+
+            <!-- Ebook 1 -->
+            <div class="ebook-card">
+                <div class="ebook-number">01</div>
+                <div class="ebook-content">
+                    <span class="ebook-emoji">🧠</span>
+                    <h3 class="ebook-title">Ansiedade Desvendada: Guia Completo</h3>
+                    <p class="ebook-desc">
+                        Entenda o que realmente acontece no seu cérebro durante a ansiedade. Da neurociência dos 7 tipos de ansiedade aos gatilhos ocultos do dia a dia — e por que ansiedade NÃO é fraqueza.
+                    </p>
+                    <div class="ebook-topics">
+                        <span class="ebook-topic">Neurociência</span>
+                        <span class="ebook-topic">7 Tipos</span>
+                        <span class="ebook-topic">Gatilhos</span>
+                        <span class="ebook-topic">Mitos</span>
+                    </div>
+                    <div class="ebook-meta">
+                        <span class="ebook-pages">20 páginas</span>
+                        <a href="LINK_EBOOK_1" class="buy-btn" target="_blank" rel="noopener">R$ 19,90 &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ebook 2 -->
+            <div class="ebook-card">
+                <div class="ebook-number">02</div>
+                <div class="ebook-content">
+                    <span class="ebook-emoji">🚨</span>
+                    <h3 class="ebook-title">Emergência Emocional: Protocolo Anti-Crise</h3>
+                    <p class="ebook-desc">
+                        8 técnicas de emergência para quando a crise bate. Protocolos de respiração, aterramento sensorial e seu cartão de emergência pessoal para levar no bolso.
+                    </p>
+                    <div class="ebook-topics">
+                        <span class="ebook-topic">8 Técnicas</span>
+                        <span class="ebook-topic">Respiração</span>
+                        <span class="ebook-topic">Aterramento</span>
+                        <span class="ebook-topic">Cartão SOS</span>
+                    </div>
+                    <div class="ebook-meta">
+                        <span class="ebook-pages">15 páginas</span>
+                        <a href="LINK_EBOOK_2" class="buy-btn" target="_blank" rel="noopener">R$ 14,90 &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ebook 3 -->
+            <div class="ebook-card">
+                <div class="ebook-number">03</div>
+                <div class="ebook-content">
+                    <span class="ebook-emoji">🔄</span>
+                    <h3 class="ebook-title">Mente Reprogramada: Vencendo Overthinking</h3>
+                    <p class="ebook-desc">
+                        Baseado em Terapia Cognitivo-Comportamental (TCC). Identifique as 10 distorções cognitivas que alimentam sua ansiedade e use o método C.O.R.A. com plano de 21 dias.
+                    </p>
+                    <div class="ebook-topics">
+                        <span class="ebook-topic">TCC</span>
+                        <span class="ebook-topic">10 Distorções</span>
+                        <span class="ebook-topic">Método C.O.R.A.</span>
+                        <span class="ebook-topic">21 Dias</span>
+                    </div>
+                    <div class="ebook-meta">
+                        <span class="ebook-pages">13 páginas</span>
+                        <a href="LINK_EBOOK_3" class="buy-btn" target="_blank" rel="noopener">R$ 14,90 &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ebook 4 -->
+            <div class="ebook-card">
+                <div class="ebook-number">04</div>
+                <div class="ebook-content">
+                    <span class="ebook-emoji">🌙</span>
+                    <h3 class="ebook-title">Sono e Ansiedade: Recupere Suas Noites</h3>
+                    <p class="ebook-desc">
+                        Quebre o ciclo ansiedade-insônia. Higiene do sono baseada em evidências, ritual noturno personalizado e programa de recuperação de 14 dias para dormir melhor.
+                    </p>
+                    <div class="ebook-topics">
+                        <span class="ebook-topic">Ciclo do Sono</span>
+                        <span class="ebook-topic">Higiene</span>
+                        <span class="ebook-topic">Ritual Noturno</span>
+                        <span class="ebook-topic">14 Dias</span>
+                    </div>
+                    <div class="ebook-meta">
+                        <span class="ebook-pages">17 páginas</span>
+                        <a href="LINK_EBOOK_4" class="buy-btn" target="_blank" rel="noopener">R$ 14,90 &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ebook 5 -->
+            <div class="ebook-card">
+                <div class="ebook-number">05</div>
+                <div class="ebook-content">
+                    <span class="ebook-emoji">🗓️</span>
+                    <h3 class="ebook-title">Plano Anti-Ansiedade: Programa de 30 Dias</h3>
+                    <p class="ebook-desc">
+                        O programa completo e progressivo. 30 dias de exercícios diários organizados em 5 pilares, com protocolo de manutenção permanente para nunca mais retroceder.
+                    </p>
+                    <div class="ebook-topics">
+                        <span class="ebook-topic">30 Dias</span>
+                        <span class="ebook-topic">5 Pilares</span>
+                        <span class="ebook-topic">Progressivo</span>
+                        <span class="ebook-topic">Manutenção</span>
+                    </div>
+                    <div class="ebook-meta">
+                        <span class="ebook-pages">18 páginas</span>
+                        <a href="LINK_EBOOK_5" class="buy-btn" target="_blank" rel="noopener">R$ 19,90 &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+            <p>
+                <strong>Aviso:</strong> Este conteúdo tem caráter informativo e educacional.
+                Não substitui consulta, diagnóstico ou tratamento por profissional de saúde mental qualificado.
+                Se você está em crise, ligue para o <strong>CVV: 188</strong>.
+            </p>
+        </div>
+
+        <div class="footer">
+            Ponto de Virada &copy; 2026 — Todos os direitos reservados
+        </div>
+
+    </div>
+</body>
+</html>
