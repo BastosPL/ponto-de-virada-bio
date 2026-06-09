@@ -61,20 +61,42 @@
         }
 
         .logo-wrapper {
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 18px;
+            margin: 0 auto 20px;
             position: relative;
+            border-radius: 50%;
+            background: linear-gradient(145deg, rgba(212,175,55,0.15), rgba(184,134,11,0.05));
+            border: 2px solid rgba(212,175,55,0.25);
+            box-shadow:
+                0 0 30px rgba(212,175,55,0.12),
+                0 0 60px rgba(212,175,55,0.06),
+                inset 0 0 20px rgba(212,175,55,0.05);
+        }
+
+        .logo-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, rgba(212,175,55,0.3), transparent 30%, rgba(212,175,55,0.15) 50%, transparent 70%, rgba(212,175,55,0.3));
+            z-index: -1;
+            animation: rotate-glow 8s linear infinite;
+        }
+
+        @keyframes rotate-glow {
+            to { transform: rotate(360deg); }
         }
 
         .logo-wrapper img {
-            width: 120px;
-            height: 120px;
+            width: 80px;
+            height: 80px;
             object-fit: contain;
-            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+            filter: drop-shadow(0 0 12px rgba(212,175,55,0.25));
+            border-radius: 50%;
         }
 
         /* Fallback if logo.png not found */
