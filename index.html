@@ -482,5 +482,27 @@
         </div>
 
     </div>
+
+    <!-- Detecta navegador interno do TikTok e força abertura no navegador padrão -->
+    <script>
+    (function() {
+        var ua = navigator.userAgent || '';
+        var isTikTok = /musical_ly|BytedanceWebview|TikTok/i.test(ua);
+        if (isTikTok) {
+            // Tenta forçar abertura no navegador padrão
+            var url = window.location.href;
+            // Android: intent
+            if (/android/i.test(ua)) {
+                window.location.href = 'intent://' + url.replace(/https?:\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;end';
+            }
+            // iOS: não tem como forçar, mostra banner
+            var banner = document.createElement('div');
+            banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#d4af37,#b8860b);color:#080808;padding:14px 20px;text-align:center;font-family:Inter,sans-serif;font-size:14px;font-weight:600;cursor:pointer;';
+            banner.innerHTML = '⚡ Toque nos 3 pontinhos (⋯) acima e clique em <u>"Abrir no navegador"</u> para melhor experiência';
+            banner.onclick = function() { banner.remove(); };
+            document.body.prepend(banner);
+        }
+    })();
+    </script>
 </body>
 </html>

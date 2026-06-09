@@ -300,5 +300,22 @@
             ⚕️ Este conteúdo tem caráter informativo e educacional. <strong>Não substitui</strong> consulta, diagnóstico ou tratamento por profissional de saúde mental qualificado. Se você está em crise, ligue para o <strong>CVV: 188</strong>.
         </div>
     </div>
+
+    <script>
+    (function() {
+        var ua = navigator.userAgent || '';
+        var isTikTok = /musical_ly|BytedanceWebview|TikTok/i.test(ua);
+        if (isTikTok) {
+            if (/android/i.test(ua)) {
+                window.location.href = 'intent://' + window.location.href.replace(/https?:\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;end';
+            }
+            var banner = document.createElement('div');
+            banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#d4af37,#b8860b);color:#080808;padding:14px 20px;text-align:center;font-family:Inter,sans-serif;font-size:14px;font-weight:600;cursor:pointer;';
+            banner.innerHTML = '⚡ Toque nos 3 pontinhos (⋯) acima e clique em <u>"Abrir no navegador"</u> para melhor experiência';
+            banner.onclick = function() { banner.remove(); };
+            document.body.prepend(banner);
+        }
+    })();
+    </script>
 </body>
 </html>
