@@ -326,6 +326,143 @@
             margin-top: 10px;
         }
 
+        /* Premium section */
+        .premium {
+            background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(184,134,11,0.06));
+            border: 2px solid rgba(212,175,55,0.4);
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+        .premium::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: -60px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(212,175,55,0.12), transparent 70%);
+        }
+        .premium::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            right: -60px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(212,175,55,0.08), transparent 70%);
+        }
+        .premium-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 5px 16px;
+            border-radius: 100px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.2), rgba(184,134,11,0.15));
+            color: #d4af37;
+            border: 1px solid rgba(212,175,55,0.35);
+            margin-bottom: 16px;
+        }
+        .premium h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f5e6a3, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        .premium > p {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .premium-modules {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+        }
+        .premium-module {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 12px;
+            padding: 14px 16px;
+        }
+        .premium-module-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #d4af37;
+            min-width: 28px;
+        }
+        .premium-module-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 3px;
+        }
+        .premium-module-desc {
+            font-size: 12px;
+            color: #777;
+        }
+        .premium-price {
+            margin-bottom: 14px;
+            position: relative;
+        }
+        .premium-price .value {
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
+            font-weight: 700;
+            color: #d4af37;
+        }
+        .premium-price .value small {
+            font-size: 14px;
+            font-weight: 400;
+            color: #888;
+        }
+        .premium-btn {
+            display: block;
+            padding: 16px;
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            color: #080808;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .premium-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212,175,55,0.4);
+        }
+        .premium-note {
+            font-size: 11px;
+            color: #666;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        @media (max-width: 480px) {
+            .premium h2 { font-size: 20px; }
+            .premium-price .value { font-size: 28px; }
+        }
+
         /* Disclaimer */
         .disclaimer {
             text-align: center;
@@ -410,6 +547,45 @@
                 Quero o Pacote Completo &rarr;
             </a>
             <div class="bundle-savings">Economia de R$ 37,50 (44% off)</div>
+        </div>
+
+        <!-- PROGRAMA PREMIUM -->
+        <div class="premium">
+            <div class="premium-badge">&#9733; Exclusivo</div>
+            <h2>Reprograma&#231;&#227;o Mental &mdash; Programa Avan&#231;ado</h2>
+            <p>3 m&#243;dulos premium com conte&#250;do in&#233;dito. TCC, ACT e neuroci&#234;ncia aplicada para quem quer ir al&#233;m.</p>
+
+            <div class="premium-modules">
+                <div class="premium-module">
+                    <div class="premium-module-num">01</div>
+                    <div>
+                        <div class="premium-module-title">Ataque &#224; Raiz da Ansiedade</div>
+                        <div class="premium-module-desc">Reestrutura&#231;&#227;o cognitiva, cren&#231;as centrais e reprograma&#231;&#227;o de padr&#245;es autom&#225;ticos</div>
+                    </div>
+                </div>
+                <div class="premium-module">
+                    <div class="premium-module-num">02</div>
+                    <div>
+                        <div class="premium-module-title">Assumindo o Controle Definitivo</div>
+                        <div class="premium-module-desc">Valores, compromisso e transforma&#231;&#227;o duradoura com t&#233;cnicas de ACT</div>
+                    </div>
+                </div>
+                <div class="premium-module">
+                    <div class="premium-module-num">03</div>
+                    <div>
+                        <div class="premium-module-title">Reduzir Ansiedade Sem Perceber</div>
+                        <div class="premium-module-desc">Micro-h&#225;bitos, neuroplasticidade e estrat&#233;gias invisíveis para o dia a dia</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="premium-price">
+                <span class="value">R$ 37,90 <small>&#224; vista</small></span>
+            </div>
+            <a href="https://pay.kiwify.com.br/pRB95vn" class="premium-btn" target="_blank" rel="noopener">
+                Quero o Programa Avan&#231;ado &rarr;
+            </a>
+            <div class="premium-note">Acesso imediato &middot; 3 ebooks exclusivos em PDF</div>
         </div>
 
         <div class="ebook-list">
