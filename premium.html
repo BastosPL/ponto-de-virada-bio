@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reprogramação Mental — Programa Avançado | Ponto de Virada</title>
+    <meta name="description" content="3 módulos premium exclusivos: TCC, ACT e neurociência aplicada para reprogramar sua mente e assumir o controle da ansiedade.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #080808;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .container {
+            max-width: 620px;
+            margin: 0 auto;
+            padding: 32px 20px 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 24px;
+            transition: color 0.2s;
+        }
+        .back:hover { color: #d4af37; }
+
+        .header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+        .badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            padding: 6px 18px;
+            border-radius: 100px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.2), rgba(184,134,11,0.12));
+            color: #d4af37;
+            border: 1px solid rgba(212,175,55,0.3);
+            margin-bottom: 16px;
+        }
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f5e6a3, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        .header p {
+            font-size: 15px;
+            color: #999;
+            line-height: 1.6;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            margin-bottom: 36px;
+            padding: 20px;
+            background: rgba(212,175,55,0.04);
+            border-radius: 14px;
+            border: 1px solid rgba(212,175,55,0.1);
+        }
+        .stat { text-align: center; }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #d4af37;
+        }
+        .stat-label {
+            font-size: 11px;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .module {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 16px;
+            padding: 24px 20px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+        .module:hover {
+            border-color: rgba(212,175,55,0.35);
+        }
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        .module-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: rgba(212,175,55,0.2);
+            min-width: 44px;
+        }
+        .module-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.3;
+        }
+        .module-subtitle {
+            font-size: 13px;
+            color: #d4af37;
+            margin-top: 2px;
+        }
+        .module-desc {
+            font-size: 14px;
+            color: #999;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .module-chapters {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .chapter {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: #bbb;
+            line-height: 1.4;
+        }
+        .chapter-dot {
+            min-width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #d4af37;
+            margin-top: 5px;
+        }
+
+        .for-who {
+            background: rgba(212,175,55,0.05);
+            border: 1px solid rgba(212,175,55,0.12);
+            border-radius: 16px;
+            padding: 24px 20px;
+            margin: 32px 0;
+        }
+        .for-who h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: #d4af37;
+            margin-bottom: 14px;
+        }
+        .for-who-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #ccc;
+            line-height: 1.5;
+        }
+        .for-who-icon {
+            font-size: 16px;
+            min-width: 22px;
+            text-align: center;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 32px 20px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(184,134,11,0.04));
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 20px;
+            margin-bottom: 24px;
+        }
+        .cta-label {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 6px;
+        }
+        .cta-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 4px;
+        }
+        .cta-price small {
+            font-size: 15px;
+            font-weight: 400;
+            color: #888;
+        }
+        .cta-includes {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+        .cta-btn {
+            display: block;
+            padding: 18px;
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            color: #080808;
+            font-size: 17px;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 14px;
+            transition: all 0.3s;
+        }
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212,175,55,0.4);
+        }
+        .cta-guarantee {
+            font-size: 12px;
+            color: #666;
+            margin-top: 12px;
+        }
+
+        .disclaimer {
+            text-align: center;
+            font-size: 11px;
+            color: #555;
+            line-height: 1.5;
+            padding: 16px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 16px;
+        }
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            color: #d4af37;
+            margin-bottom: 4px;
+        }
+        .footer p {
+            font-size: 11px;
+            color: #555;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .module {
+            opacity: 0;
+            animation: fadeUp 0.5s ease forwards;
+        }
+        .module:nth-child(1) { animation-delay: 0.1s; }
+        .module:nth-child(2) { animation-delay: 0.2s; }
+        .module:nth-child(3) { animation-delay: 0.3s; }
+
+        @media (max-width: 480px) {
+            .container { padding: 24px 16px 48px; }
+            .header h1 { font-size: 24px; }
+            .cta-price { font-size: 34px; }
+            .stats { gap: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <a href="ebooks.html" class="back">&larr; Voltar para Ebooks</a>
+
+        <div class="header">
+            <div class="badge">&#9733; Programa Exclusivo</div>
+            <h1>Reprograma&ccedil;&atilde;o Mental &mdash;<br>Programa Avan&ccedil;ado</h1>
+            <p>3 m&oacute;dulos premium com conte&uacute;do in&eacute;dito. TCC, ACT e neuroci&ecirc;ncia aplicada para quem j&aacute; entende o b&aacute;sico e quer ir al&eacute;m.</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">3</div>
+                <div class="stat-label">M&oacute;dulos</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">19</div>
+                <div class="stat-label">Cap&iacute;tulos</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Ebooks PDF</div>
+            </div>
+        </div>
+
+        <!-- M&oacute;dulo 1 -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-num">01</div>
+                <div>
+                    <div class="module-title">Ataque &agrave; Raiz da Ansiedade</div>
+                    <div class="module-subtitle">Reestrutura&ccedil;&atilde;o Cognitiva Avan&ccedil;ada</div>
+                </div>
+            </div>
+            <p class="module-desc">Entenda como seu c&eacute;rebro cria loops de medo, quais distor&ccedil;&otilde;es cognitivas alimentam a ansiedade e aprenda o m&eacute;todo de 5 passos para reprogramar pensamentos autom&aacute;ticos.</p>
+            <div class="module-chapters">
+                <div class="chapter"><div class="chapter-dot"></div>O C&eacute;rebro Ansioso &mdash; como funciona o loop do medo</div>
+                <div class="chapter"><div class="chapter-dot"></div>10 Distor&ccedil;&otilde;es Cognitivas que sua mente comete</div>
+                <div class="chapter"><div class="chapter-dot"></div>Reestrutura&ccedil;&atilde;o Cognitiva na Pr&aacute;tica (5 passos)</div>
+                <div class="chapter"><div class="chapter-dot"></div>Reprogramando Cren&ccedil;as Limitantes</div>
+                <div class="chapter"><div class="chapter-dot"></div>O Di&aacute;rio de Pensamentos &mdash; sua ferramenta mais poderosa</div>
+                <div class="chapter"><div class="chapter-dot"></div>Neuroplasticidade &mdash; seu c&eacute;rebro pode mudar</div>
+            </div>
+        </div>
+
+        <!-- M&oacute;dulo 2 -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-num">02</div>
+                <div>
+                    <div class="module-title">Assumindo o Controle Definitivo</div>
+                    <div class="module-subtitle">Terapia de Aceita&ccedil;&atilde;o e Compromisso (ACT)</div>
+                </div>
+            </div>
+            <p class="module-desc">Pare de lutar contra a ansiedade e aprenda a agir apesar dela. Descubra seu locus de controle, construa autoefic&aacute;cia e crie um protocolo di&aacute;rio de empoderamento.</p>
+            <div class="module-chapters">
+                <div class="chapter"><div class="chapter-dot"></div>Locus de Controle &mdash; interno vs externo</div>
+                <div class="chapter"><div class="chapter-dot"></div>Autoefic&aacute;cia &mdash; a cren&ccedil;a que muda tudo</div>
+                <div class="chapter"><div class="chapter-dot"></div>Valores Pessoais &mdash; sua b&uacute;ssola interior</div>
+                <div class="chapter"><div class="chapter-dot"></div>Aceita&ccedil;&atilde;o e Compromisso na pr&aacute;tica</div>
+                <div class="chapter"><div class="chapter-dot"></div>Construindo Resili&ecirc;ncia Emocional</div>
+                <div class="chapter"><div class="chapter-dot"></div>Seu Protocolo de Empoderamento Di&aacute;rio</div>
+            </div>
+        </div>
+
+        <!-- M&oacute;dulo 3 -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-num">03</div>
+                <div>
+                    <div class="module-title">Reduzir Ansiedade Sem Perceber</div>
+                    <div class="module-subtitle">Micro-H&aacute;bitos e Neuroplasticidade</div>
+                </div>
+            </div>
+            <p class="module-desc">Mudan&ccedil;as de 30 segundos com efeito real. Descubra como ambiente, alimenta&ccedil;&atilde;o, movimento e rela&ccedil;&otilde;es sociais regulam seu sistema nervoso &mdash; sem for&ccedil;a de vontade.</p>
+            <div class="module-chapters">
+                <div class="chapter"><div class="chapter-dot"></div>O Sistema Nervoso no Piloto Autom&aacute;tico</div>
+                <div class="chapter"><div class="chapter-dot"></div>Ambiente &mdash; seu espa&ccedil;o molda seu estado mental</div>
+                <div class="chapter"><div class="chapter-dot"></div>Micro-H&aacute;bitos que regulam o sistema nervoso</div>
+                <div class="chapter"><div class="chapter-dot"></div>Alimenta&ccedil;&atilde;o e Ansiedade &mdash; conex&atilde;o intestino-c&eacute;rebro</div>
+                <div class="chapter"><div class="chapter-dot"></div>Movimento Intuitivo &mdash; exerc&iacute;cio sem for&ccedil;ar</div>
+                <div class="chapter"><div class="chapter-dot"></div>Rela&ccedil;&otilde;es Sociais como reguladores emocionais</div>
+                <div class="chapter"><div class="chapter-dot"></div>Tecnologia Consciente &mdash; reduzindo o ru&iacute;do digital</div>
+            </div>
+        </div>
+
+        <!-- Para quem -->
+        <div class="for-who">
+            <h3>Para quem &eacute; esse programa?</h3>
+            <div class="for-who-item">
+                <span class="for-who-icon">&#10003;</span>
+                <span>Quem j&aacute; tentou controlar a ansiedade mas sente que n&atilde;o vai &agrave; raiz do problema</span>
+            </div>
+            <div class="for-who-item">
+                <span class="for-who-icon">&#10003;</span>
+                <span>Quem quer entender a ci&ecirc;ncia por tr&aacute;s da ansiedade (TCC, ACT, neuroci&ecirc;ncia) de forma acess&iacute;vel</span>
+            </div>
+            <div class="for-who-item">
+                <span class="for-who-icon">&#10003;</span>
+                <span>Quem busca mudan&ccedil;as reais e duradouras, n&atilde;o apenas t&eacute;cnicas tempor&aacute;rias</span>
+            </div>
+            <div class="for-who-item">
+                <span class="for-who-icon">&#10003;</span>
+                <span>Quem valoriza conte&uacute;do profissional com exerc&iacute;cios pr&aacute;ticos e aplic&aacute;veis</span>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta">
+            <div class="cta-label">Acesso imediato aos 3 m&oacute;dulos</div>
+            <div class="cta-price">R$ 37,90 <small>&agrave; vista</small></div>
+            <div class="cta-includes">3 ebooks exclusivos em PDF &middot; 19 cap&iacute;tulos &middot; Exerc&iacute;cios pr&aacute;ticos</div>
+            <a href="https://pay.kiwify.com.br/pRB95vn" class="cta-btn" target="_blank" rel="noopener">
+                Quero o Programa Avan&ccedil;ado &rarr;
+            </a>
+            <div class="cta-guarantee">Entrega instant&acirc;nea ap&oacute;s a confirma&ccedil;&atilde;o do pagamento</div>
+        </div>
+
+        <div class="disclaimer">
+            Este material &eacute; educativo e informativo. N&atilde;o substitui acompanhamento profissional de sa&uacute;de mental.
+        </div>
+
+        <div class="footer">
+            <div class="footer-brand">Ponto de Virada</div>
+            <p>&copy; 2026 &middot; Todos os direitos reservados</p>
+        </div>
+    </div>
+
+    <script>
+        (function(){
+            var ua = navigator.userAgent || '';
+            if (/musical_ly|TikTok|BytedanceWebview/i.test(ua)) {
+                var overlay = document.createElement('div');
+                overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:#080808;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;text-align:center;font-family:Inter,sans-serif;';
+                overlay.innerHTML = '<div style="font-size:40px;margin-bottom:16px;">&#128274;</div><h2 style="color:#d4af37;font-size:20px;margin-bottom:12px;">Abra no seu navegador</h2><p style="color:#999;font-size:14px;line-height:1.6;">Para a melhor experi&ecirc;ncia, toque nos <strong style="color:#fff;">3 pontinhos</strong> no canto superior e selecione <strong style="color:#fff;">&ldquo;Abrir no navegador&rdquo;</strong></p>';
+                document.body.appendChild(overlay);
+            }
+        })();
+    </script>
+</body>
+</html>
