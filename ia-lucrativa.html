@@ -139,8 +139,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
         }
+
+        .pain-icon svg { width: 18px; height: 18px; stroke: #ff4d4d; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
         .pain-text { font-size: 16px; color: #bbb; }
         .pain-text strong { color: #fff; }
@@ -173,8 +174,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
         }
+
+        .benefit-icon svg { width: 20px; height: 20px; stroke: #4db8ff; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
         .benefit-title {
             font-size: 16px;
@@ -229,7 +231,8 @@
             margin-bottom: 16px;
         }
 
-        .testimonial-stars { color: #ffc107; font-size: 16px; margin-bottom: 10px; }
+        .testimonial-stars { display: flex; gap: 3px; margin-bottom: 10px; }
+        .testimonial-stars svg { width: 16px; height: 16px; fill: #ffc107; stroke: none; }
 
         .testimonial-text {
             font-size: 15px;
@@ -324,7 +327,8 @@
             text-align: left;
         }
 
-        .guarantee-icon { font-size: 36px; flex-shrink: 0; }
+        .guarantee-icon { flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
+        .guarantee-icon svg { width: 36px; height: 36px; stroke: #4db8ff; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
         .guarantee-text {
             font-size: 14px;
@@ -451,19 +455,19 @@
     <div class="section">
         <h2 class="section-title">Isso soa <span>familiar</span>?</h2>
         <div class="pain-item">
-            <div class="pain-icon">😩</div>
+            <div class="pain-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg></div>
             <p class="pain-text"><strong>Passa horas no celular</strong> mas não ganha nada com isso</p>
         </div>
         <div class="pain-item">
-            <div class="pain-icon">😰</div>
+            <div class="pain-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
             <p class="pain-text"><strong>Quer uma renda extra</strong> mas não sabe por onde começar</p>
         </div>
         <div class="pain-item">
-            <div class="pain-icon">😤</div>
+            <div class="pain-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
             <p class="pain-text"><strong>Já tentou várias coisas online</strong> e nada deu certo até agora</p>
         </div>
         <div class="pain-item">
-            <div class="pain-icon">🤯</div>
+            <div class="pain-icon"><svg viewBox="0 0 24 24"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="12" r="10"/><line x1="12" y1="17" x2="12" y2="17.01"/></svg></div>
             <p class="pain-text"><strong>Vê gente ganhando dinheiro com IA</strong> mas acha que é muito técnico pra você</p>
         </div>
     </div>
@@ -475,28 +479,28 @@
         <h2 class="section-title">O que você vai <span>aprender</span></h2>
         <div class="benefit-grid">
             <div class="benefit-card">
-                <div class="benefit-icon">🎯</div>
+                <div class="benefit-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
                 <div>
                     <div class="benefit-title">7 Métodos Validados</div>
                     <div class="benefit-desc">Formas reais e testadas de gerar renda com IA em 2026</div>
                 </div>
             </div>
             <div class="benefit-card">
-                <div class="benefit-icon">📋</div>
+                <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
                 <div>
                     <div class="benefit-title">Prompts Prontos</div>
                     <div class="benefit-desc">50 prompts para copiar, colar e começar a usar hoje</div>
                 </div>
             </div>
             <div class="benefit-card">
-                <div class="benefit-icon">🆓</div>
+                <div class="benefit-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
                 <div>
                     <div class="benefit-title">Ferramentas Gratuitas</div>
                     <div class="benefit-desc">Tudo funciona com ferramentas 100% gratuitas</div>
                 </div>
             </div>
             <div class="benefit-card">
-                <div class="benefit-icon">👶</div>
+                <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
                 <div>
                     <div class="benefit-title">Do Zero ao Resultado</div>
                     <div class="benefit-desc">Funciona mesmo se você nunca usou IA antes</div>
@@ -538,17 +542,17 @@
     <div class="section">
         <h2 class="section-title">O que estão <span>dizendo</span></h2>
         <div class="testimonial">
-            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            <div class="testimonial-stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
             <p class="testimonial-text">"Comecei do zero e já fiz minha primeira venda em 3 dias usando o método 4. O passo a passo é muito claro."</p>
             <div class="testimonial-author">— Lucas M.</div>
         </div>
         <div class="testimonial">
-            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            <div class="testimonial-stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
             <p class="testimonial-text">"Melhor investimento que fiz. O conteúdo é direto ao ponto, sem enrolação. Os prompts prontos economizam horas."</p>
             <div class="testimonial-author">— Ana C.</div>
         </div>
         <div class="testimonial">
-            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            <div class="testimonial-stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
             <p class="testimonial-text">"Achei que IA era coisa de programador. Esse ebook me provou o contrário. Já estou aplicando o método 2 e 5."</p>
             <div class="testimonial-author">— Roberto S.</div>
         </div>
@@ -592,13 +596,13 @@
     <a href="https://pay.kiwify.com.br/83zlAcn" class="cta-btn">QUERO MEU EBOOK AGORA</a>
     <p class="cta-sub">Pagamento seguro via PIX ou cartão em até 3x</p>
     <div class="guarantee">
-        <div class="guarantee-icon">🛡️</div>
+        <div class="guarantee-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10" stroke-width="2"/></svg></div>
         <div class="guarantee-text"><strong>Garantia de 7 dias.</strong> Se por qualquer motivo você não ficar satisfeito, devolvemos 100% do seu dinheiro. Sem perguntas.</div>
     </div>
     <div class="security-row">
-        <div class="security-item"><span>🔒</span> Compra segura</div>
-        <div class="security-item"><span>⚡</span> Acesso imediato</div>
-        <div class="security-item"><span>💳</span> PIX ou cartão 3x</div>
+        <div class="security-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Compra segura</div>
+        <div class="security-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Acesso imediato</div>
+        <div class="security-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> PIX ou cartão 3x</div>
     </div>
 </section>
 
