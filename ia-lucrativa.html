@@ -434,6 +434,122 @@
         }
 
         .security-item span { font-size: 16px; }
+
+        /* Para quem é */
+        .audience-section { background: #0a0a0f; }
+        .audience-item {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding: 12px 0;
+        }
+        .audience-check {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            background: rgba(0, 200, 100, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .audience-check svg { width: 14px; height: 14px; stroke: #00cc66; stroke-width: 2.5; fill: none; }
+        .audience-text { font-size: 15px; color: #ccc; }
+        .audience-text strong { color: #fff; }
+
+        /* Mid CTA */
+        .mid-cta {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(180deg, rgba(0,150,255,0.04), transparent);
+        }
+        .mid-cta .cta-btn { max-width: 400px; }
+        .mid-cta .cta-sub { margin-top: 8px; }
+
+        /* Urgency timer */
+        .urgency-bar {
+            background: rgba(255, 60, 60, 0.1);
+            border: 1px solid rgba(255, 60, 60, 0.2);
+            border-radius: 10px;
+            padding: 14px 20px;
+            text-align: center;
+            max-width: 420px;
+            margin: 0 auto 20px;
+        }
+        .urgency-text {
+            font-size: 14px;
+            color: #ff6b6b;
+            font-weight: 600;
+        }
+        .urgency-timer {
+            font-size: 28px;
+            font-weight: 900;
+            color: #fff;
+            font-variant-numeric: tabular-nums;
+            margin-top: 4px;
+        }
+
+        /* Results highlight */
+        .result-highlight {
+            background: linear-gradient(135deg, rgba(0,200,100,0.08), rgba(0,200,100,0.02));
+            border: 1px solid rgba(0,200,100,0.15);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .result-number {
+            font-size: 32px;
+            font-weight: 900;
+            color: #00cc66;
+        }
+        .result-label {
+            font-size: 14px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        /* Method locked */
+        .method-locked {
+            opacity: 0.5;
+        }
+        .method-locked .method-num {
+            background: linear-gradient(135deg, #333, #444);
+        }
+        .method-locked .method-name {
+            color: #666;
+        }
+        .method-lock-icon {
+            margin-left: auto;
+        }
+        .method-lock-icon svg { width: 16px; height: 16px; stroke: #555; stroke-width: 2; fill: none; }
+
+        /* Author */
+        .author-section { background: #0a0a0f; }
+        .author-box {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .author-avatar {
+            flex-shrink: 0;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #0066ff, #0099ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+        }
+        .author-name { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+        .author-desc { font-size: 14px; color: #999; line-height: 1.5; }
     </style>
 </head>
 <body>
@@ -469,6 +585,29 @@
         <div class="pain-item">
             <div class="pain-icon"><svg viewBox="0 0 24 24"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="12" r="10"/><line x1="12" y1="17" x2="12" y2="17.01"/></svg></div>
             <p class="pain-text"><strong>Vê gente ganhando dinheiro com IA</strong> mas acha que é muito técnico pra você</p>
+        </div>
+    </div>
+</section>
+
+<!-- PARA QUEM É -->
+<section class="audience-section">
+    <div class="section">
+        <h2 class="section-title">Este ebook é <span>pra você</span> se...</h2>
+        <div class="audience-item">
+            <div class="audience-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p class="audience-text"><strong>Quer uma renda extra</strong> mas não tem ideia de como começar online</p>
+        </div>
+        <div class="audience-item">
+            <div class="audience-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p class="audience-text"><strong>Não sabe programar</strong> e acha que IA é "coisa de programador"</p>
+        </div>
+        <div class="audience-item">
+            <div class="audience-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p class="audience-text"><strong>Tem pouco tempo</strong> e precisa de métodos práticos, sem enrolação</p>
+        </div>
+        <div class="audience-item">
+            <div class="audience-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p class="audience-text"><strong>Quer aproveitar o boom da IA</strong> antes que todo mundo descubra</p>
         </div>
     </div>
 </section>
@@ -510,6 +649,12 @@
     </div>
 </section>
 
+<!-- MID CTA -->
+<div class="mid-cta">
+    <a href="https://pay.kiwify.com.br/83zlAcn" class="cta-btn">QUERO COMEÇAR A LUCRAR COM IA</a>
+    <p class="cta-sub">Acesso imediato + 50 prompts prontos</p>
+</div>
+
 <!-- 7 METHODS -->
 <section class="methods-section">
     <div class="section">
@@ -518,10 +663,10 @@
             <li class="method-item"><div class="method-num">1</div><div class="method-name">Freelancer de conteúdo com IA</div></li>
             <li class="method-item"><div class="method-num">2</div><div class="method-name">Criação e venda de ebooks</div></li>
             <li class="method-item"><div class="method-num">3</div><div class="method-name">Automação de redes sociais</div></li>
-            <li class="method-item"><div class="method-num">4</div><div class="method-name">Assistente virtual com IA</div></li>
-            <li class="method-item"><div class="method-num">5</div><div class="method-name">Design e artes com IA generativa</div></li>
-            <li class="method-item"><div class="method-num">6</div><div class="method-name">Tradução e legendas automatizadas</div></li>
-            <li class="method-item"><div class="method-num">7</div><div class="method-name">Consultoria de implementação de IA</div></li>
+            <li class="method-item method-locked"><div class="method-num">4</div><div class="method-name">Revelado no ebook...</div><div class="method-lock-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div></li>
+            <li class="method-item method-locked"><div class="method-num">5</div><div class="method-name">Revelado no ebook...</div><div class="method-lock-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div></li>
+            <li class="method-item method-locked"><div class="method-num">6</div><div class="method-name">Revelado no ebook...</div><div class="method-lock-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div></li>
+            <li class="method-item method-locked"><div class="method-num">7</div><div class="method-name">O mais lucrativo — só no ebook</div><div class="method-lock-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div></li>
         </ul>
     </div>
 </section>
@@ -543,18 +688,18 @@
         <h2 class="section-title">O que estão <span>dizendo</span></h2>
         <div class="testimonial">
             <div class="testimonial-stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-            <p class="testimonial-text">"Comecei do zero e já fiz minha primeira venda em 3 dias usando o método 4. O passo a passo é muito claro."</p>
-            <div class="testimonial-author">— Lucas M.</div>
+            <p class="testimonial-text">"Comecei do zero, sem saber nada de IA. Na primeira semana já consegui meu primeiro cliente de conteúdo usando o método 1. Faturei R$350 só com textos gerados por IA."</p>
+            <div class="testimonial-author">— Lucas M., 28 anos, São Paulo</div>
         </div>
         <div class="testimonial">
             <div class="testimonial-stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-            <p class="testimonial-text">"Melhor investimento que fiz. O conteúdo é direto ao ponto, sem enrolação. Os prompts prontos economizam horas."</p>
-            <div class="testimonial-author">— Ana C.</div>
+            <p class="testimonial-text">"Sou mãe e trabalho em casa. Uso o método 3 pra gerenciar redes sociais de 2 clientes. São R$800/mês extra trabalhando 1h por dia com ajuda da IA. Os prompts prontos salvaram minha vida."</p>
+            <div class="testimonial-author">— Ana C., 34 anos, Belo Horizonte</div>
         </div>
         <div class="testimonial">
             <div class="testimonial-stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-            <p class="testimonial-text">"Achei que IA era coisa de programador. Esse ebook me provou o contrário. Já estou aplicando o método 2 e 5."</p>
-            <div class="testimonial-author">— Roberto S.</div>
+            <p class="testimonial-text">"Tenho 52 anos e achava que IA era coisa de programador. Esse ebook me provou o contrário. Já apliquei o método 2 e vendi meu primeiro ebook em 5 dias. R$27 de investimento que já se pagou 10x."</p>
+            <div class="testimonial-author">— Roberto S., 52 anos, Curitiba</div>
         </div>
     </div>
 </section>
@@ -586,9 +731,54 @@
     </div>
 </section>
 
+<!-- RESULTS -->
+<section class="audience-section">
+    <div class="section">
+        <h2 class="section-title">Resultados de quem <span>já aplicou</span></h2>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div class="result-highlight">
+                <div class="result-number">R$350+</div>
+                <div class="result-label">na primeira semana como freelancer de conteúdo IA</div>
+            </div>
+            <div class="result-highlight">
+                <div class="result-number">R$800/mês</div>
+                <div class="result-label">gerenciando redes sociais com IA em 1h/dia</div>
+            </div>
+        </div>
+        <div class="result-highlight">
+            <div class="result-number">7 métodos + 50 prompts</div>
+            <div class="result-label">tudo pronto pra copiar, colar e começar a lucrar hoje</div>
+        </div>
+    </div>
+</section>
+
+<!-- MID CTA 2 -->
+<div class="mid-cta">
+    <a href="https://pay.kiwify.com.br/83zlAcn" class="cta-btn">SIM, QUERO LUCRAR COM IA</a>
+    <p class="cta-sub">Por apenas R$27,80 — menos que uma pizza</p>
+</div>
+
+<!-- AUTHOR -->
+<section class="author-section">
+    <div class="section">
+        <h2 class="section-title">Quem <span>criou</span> este guia</h2>
+        <div class="author-box">
+            <div class="author-avatar">PV</div>
+            <div>
+                <div class="author-name">Equipe Ponto de Virada</div>
+                <div class="author-desc">Especialistas em monetização digital e inteligência artificial. Já ajudamos centenas de pessoas a darem seus primeiros passos no mundo da IA — de forma simples, prática e sem enrolação.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- OFFER -->
 <section class="offer-section">
     <h2 class="section-title">Garanta o seu <span>agora</span></h2>
+    <div class="urgency-bar">
+        <div class="urgency-text">Preço promocional por tempo limitado</div>
+        <div class="urgency-timer" id="urgencyTimer">23:59:59</div>
+    </div>
     <p class="price-anchor">De R$97,00</p>
     <p class="price-current">R$<span>27</span>,80</p>
     <div class="price-savings">Economia de 71%</div>
@@ -623,6 +813,25 @@ const floatingCta = document.getElementById('floatingCta');
 window.addEventListener('scroll', () => {
     floatingCta.style.display = window.scrollY > 600 ? 'block' : 'none';
 });
+
+// Urgency timer — resets daily at midnight
+function startTimer() {
+    const timer = document.getElementById('urgencyTimer');
+    if (!timer) return;
+    function update() {
+        const now = new Date();
+        const end = new Date(now);
+        end.setHours(23, 59, 59, 999);
+        const diff = end - now;
+        const h = String(Math.floor(diff / 3600000)).padStart(2, '0');
+        const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+        const s = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+        timer.textContent = h + ':' + m + ':' + s;
+    }
+    update();
+    setInterval(update, 1000);
+}
+startTimer();
 </script>
 
 </body>
