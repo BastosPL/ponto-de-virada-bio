@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obsidian Inteligente: Segundo Cérebro com IA do Zero</title>
+    <meta name="description" content="O primeiro guia em português que ensina como montar seu Segundo Cérebro com Obsidian + Inteligência Artificial. PDF com 76 páginas + vault pronto.">
+    <meta property="og:title" content="Obsidian Inteligente: Segundo Cérebro com IA do Zero">
+    <meta property="og:description" content="Guia PDF com 76 páginas: Obsidian + IA (Claude) do zero. Vault pré-configurado + 10 prompts prontos.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1703579497354195');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1703579497354195&ev=PageView&noscript=1"
+    /></noscript>
+    <style>
+        :root {
+            --bg-primary: #08080c;
+            --bg-secondary: #0c0c14;
+            --bg-card: rgba(255,255,255,0.03);
+            --border-subtle: rgba(255,255,255,0.06);
+            --border-accent: rgba(124,58,237,0.2);
+            --text-primary: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #5c5c72;
+            --accent: #7c3aed;
+            --accent-light: #a78bfa;
+            --accent-glow: rgba(124,58,237,0.15);
+            --accent-surface: rgba(124,58,237,0.06);
+            --success: #22c55e;
+            --success-surface: rgba(34,197,94,0.08);
+            --danger: #ef4444;
+            --danger-surface: rgba(239,68,68,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            overflow-x: hidden;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, .section-title, .benefit-title, .bonus-title, .faq-q, .author-name, .what-title {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative;
+            padding: 100px 24px 80px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent-surface);
+            color: var(--accent-light);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 100px;
+            letter-spacing: 0.3px;
+            margin-bottom: 32px;
+            border: 1px solid var(--border-accent);
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent-light);
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 7vw, 52px);
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--accent-light), #c4b5fd, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 17px;
+            color: var(--text-secondary);
+            max-width: 480px;
+            margin: 0 auto 48px;
+            line-height: 1.7;
+        }
+
+        .mockup-wrapper {
+            position: relative;
+            z-index: 1;
+            margin: 0 auto 48px;
+            max-width: 280px;
+        }
+
+        .mockup-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            background: radial-gradient(circle, rgba(124,58,237,0.12), transparent 70%);
+            z-index: -1;
+            border-radius: 20px;
+        }
+
+        .mockup-wrapper img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+        }
+
+        /* ── CTA BUTTON ── */
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto 14px;
+            padding: 18px 32px;
+            background: linear-gradient(135deg, var(--accent), #6d28d9);
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(124,58,237,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(124,58,237,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+
+        .cta-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* ── SECTIONS ── */
+        .section {
+            padding: 80px 24px;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .section-alt { background: var(--bg-secondary); }
+
+        .section-divider {
+            width: 48px;
+            height: 1px;
+            background: var(--border-accent);
+            margin: 0 auto 32px;
+        }
+
+        .section-title {
+            font-size: clamp(24px, 5vw, 36px);
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 48px;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .section-title .gradient-text {
+            background: linear-gradient(135deg, var(--accent-light), #c4b5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── PAIN POINTS ── */
+        .pain-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .pain-item:last-child { border-bottom: none; }
+
+        .pain-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--danger-surface);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pain-icon svg { width: 18px; height: 18px; stroke: var(--danger); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+        .pain-text { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+        .pain-text strong { color: var(--text-primary); font-weight: 600; }
+
+        /* ── WHAT IT IS / ISN'T ── */
+        .what-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 32px;
+            backdrop-filter: blur(8px);
+        }
+
+        .what-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .what-item {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .what-check {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background: var(--success-surface);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .what-check svg { width: 14px; height: 14px; stroke: var(--success); stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+        .what-text { font-size: 15px; color: var(--text-secondary); }
+        .what-text strong { color: var(--text-primary); font-weight: 500; }
+
+        .what-divider {
+            height: 1px;
+            background: var(--border-subtle);
+            margin: 20px 0;
+        }
+
+        .not-item {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .not-x {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background: var(--danger-surface);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .not-x svg { width: 12px; height: 12px; stroke: var(--danger); stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+        /* ── AUDIENCE ── */
+        .audience-item {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .audience-check {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--accent-surface);
+            border: 1px solid var(--border-accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .audience-check svg { width: 14px; height: 14px; stroke: var(--accent-light); stroke-width: 2.5; fill: none; }
+
+        .audience-text { font-size: 15px; color: var(--text-secondary); }
+        .audience-text strong { color: var(--text-primary); font-weight: 500; }
+
+        /* ── BENEFITS GRID ── */
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .benefit-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 28px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            transition: border-color 0.2s ease;
+        }
+
+        .benefit-card:hover {
+            border-color: var(--border-accent);
+        }
+
+        .benefit-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: var(--accent-surface);
+            border: 1px solid var(--border-accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .benefit-icon svg { width: 20px; height: 20px; stroke: var(--accent-light); stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+        .benefit-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            letter-spacing: -0.01em;
+        }
+
+        .benefit-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+        /* ── MID CTA ── */
+        .mid-cta {
+            text-align: center;
+            padding: 48px 24px;
+        }
+
+        .mid-cta .cta-btn { max-width: 380px; }
+
+        /* ── CHAPTERS ── */
+        .method-list { list-style: none; }
+
+        .method-item {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .method-item:last-child { border-bottom: none; }
+
+        .method-num {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-surface);
+            border: 1px solid var(--border-accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--accent-light);
+        }
+
+        .method-name {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* ── BONUS ── */
+        .bonus-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(251,191,36,0.12);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: left;
+            margin-bottom: 16px;
+        }
+
+        .bonus-badge {
+            display: inline-block;
+            background: rgba(251,191,36,0.08);
+            color: #fbbf24;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: 100px;
+            letter-spacing: 0.5px;
+            margin-bottom: 14px;
+        }
+
+        .bonus-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .bonus-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+        /* ── TESTIMONIALS ── */
+        .testimonial {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-stars { display: flex; gap: 2px; margin-bottom: 16px; }
+        .testimonial-stars svg { width: 14px; height: 14px; fill: #fbbf24; stroke: none; }
+
+        .testimonial-text {
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent-light);
+        }
+
+        /* ── FAQ ── */
+        .faq-item {
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 24px 0;
+        }
+
+        .faq-item:last-child { border-bottom: none; }
+
+        .faq-q {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .faq-a { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+        /* ── AUTHOR ── */
+        .author-box {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 28px;
+        }
+
+        .author-avatar {
+            flex-shrink: 0;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--accent), #6d28d9);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .author-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .author-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+        /* ── OFFER ── */
+        .offer-section {
+            text-align: center;
+            padding: 100px 24px;
+            position: relative;
+        }
+
+        .offer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .price-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        .price-anchor {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .price-current {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(48px, 12vw, 64px);
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+        }
+
+        .price-current .accent { color: var(--accent-light); }
+
+        .price-savings {
+            display: inline-block;
+            background: var(--success-surface);
+            color: var(--success);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 40px;
+        }
+
+        .guarantee {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 460px;
+            margin: 40px auto 0;
+            text-align: left;
+        }
+
+        .guarantee-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .guarantee-icon svg { width: 32px; height: 32px; stroke: var(--accent-light); stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+        .guarantee-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+        .guarantee-text strong { color: var(--text-primary); font-weight: 600; }
+
+        .security-row {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .security-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .security-item svg { width: 14px; height: 14px; stroke: var(--text-muted); stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+        /* ── FOOTER ── */
+        .footer {
+            text-align: center;
+            padding: 48px 24px;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer p + p { margin-top: 8px; }
+
+        /* ── FLOATING CTA ── */
+        .floating-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(8,8,12,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 16px 24px;
+            z-index: 100;
+            display: none;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .floating-cta .cta-btn {
+            margin-bottom: 0;
+            font-size: 15px;
+            padding: 16px 24px;
+            display: block;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (min-width: 640px) {
+            .benefit-grid { grid-template-columns: 1fr 1fr; }
+            .hero { padding: 120px 24px 100px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .cta-btn { transition: none; }
+            .benefit-card { transition: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-badge">Primeiro guia em português</div>
+    <h1>Monte seu <span class="gradient-text">Segundo Cérebro</span> com Obsidian + IA</h1>
+    <p class="hero-sub">Guia PDF com 76 páginas que ensina do zero: organizar notas, sincronizar grátis e integrar com inteligência artificial.</p>
+    <div class="mockup-wrapper">
+        <img src="https://files.catbox.moe/8sk8b1.png" alt="Ebook Obsidian Inteligente" width="280" height="396" loading="eager">
+    </div>
+    <a href="https://pay.cakto.com.br/32724jq_966963" class="cta-btn">Quero meu guia agora</a>
+    <p class="cta-sub">Acesso imediato por apenas R$32,90</p>
+</section>
+
+<!-- PAIN POINTS -->
+<section class="section-alt">
+    <div class="section">
+        <div class="section-divider"></div>
+        <h2 class="section-title">Isso soa <span class="gradient-text">familiar</span>?</h2>
+        <div class="pain-item">
+            <div class="pain-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <p class="pain-text"><strong>Notas espalhadas</strong> entre Google Docs, Notion, WhatsApp e capturas de tela</p>
+        </div>
+        <div class="pain-item">
+            <div class="pain-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <p class="pain-text"><strong>Perde tempo procurando</strong> informação que você já salvou em algum lugar</p>
+        </div>
+        <div class="pain-item">
+            <div class="pain-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
+            <p class="pain-text"><strong>Notion travando</strong> e dependendo de internet para acessar suas notas</p>
+        </div>
+        <div class="pain-item">
+            <div class="pain-icon"><svg viewBox="0 0 24 24"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="12" r="10"/><line x1="12" y1="17" x2="12" y2="17.01"/></svg></div>
+            <p class="pain-text"><strong>Instalou o Obsidian</strong> mas não sabe por onde começar nem como organizar</p>
+        </div>
+    </div>
+</section>
+
+<!-- O QUE E / O QUE NAO E -->
+<section>
+    <div class="section">
+        <div class="section-divider"></div>
+        <h2 class="section-title">O que é <span class="gradient-text">este produto</span></h2>
+        <div class="what-box">
+            <div class="what-title">Isto É:</div>
+            <div class="what-item">
+                <div class="what-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="what-text">Um <strong>ebook em PDF</strong> com 76 páginas, passo a passo com prints</div>
+            </div>
+            <div class="what-item">
+                <div class="what-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="what-text">Um guia para configurar o <strong>Obsidian</strong> (app gratuito de anotações)</div>
+            </div>
+            <div class="what-item">
+                <div class="what-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="what-text">Ensina a integrar com <strong>IA (Claude)</strong> para organizar notas automaticamente</div>
+            </div>
+            <div class="what-item">
+                <div class="what-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="what-text">Inclui <strong>vault pré-configurado</strong> pronto para usar + 10 prompts de IA</div>
+            </div>
+            <div class="what-divider"></div>
+            <div class="what-title" style="color: var(--danger);">Isto NÃO É:</div>
+            <div class="not-item">
+                <div class="not-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+                <div class="what-text">Não é um aplicativo ou software</div>
+            </div>
+            <div class="not-item">
+                <div class="not-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+                <div class="what-text">Não é curso em vídeo</div>
+            </div>
+            <div class="not-item">
+                <div class="not-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+                <div class="what-text">Não é sobre ganhar dinheiro — é sobre organizar sua vida e conhecimento</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PARA QUEM E -->
+<section class="section-alt">
+    <div class="section">
+        <div class="section-divider"></div>
+        <h2 class="section-title">Este guia é <span class="gradient-text">pra você</span> se...</h2>
+        <div class="audience-item">
+            <div class="audience-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p class="audience-text"><strong>Quer organizar ideias, projetos e anotações</strong> em um sistema que funciona offline</p>
+        </div>
+        <div class="audience-item">
+            <div class="audience-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p class="audience-text"><strong>Usa ou quer migrar do Notion</strong> e ter seus dados no seu computador</p>
+        </div>
+        <div class="audience-item">
+            <div class="audience-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p class="audience-text"><strong>Quer usar IA para organizar conhecimento</strong>, não só para gerar texto</p>
+        </div>
+        <div class="audience-item">
+            <div class="audience-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p class="audience-text"><strong>Prefere um guia direto</strong> em vez de gastar R$288 num curso em vídeo</p>
+        </div>
+    </div>
+</section>
+
+<!-- SOLUTION -->
+<section>
+    <div class="section">
+        <div class="section-divider"></div>
+        <h2 class="section-title">O que você vai <span class="gradient-text">aprender</span></h2>
+        <div class="benefit-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                <div>
+                    <div class="benefit-title">Do Zero ao Organizado</div>
+                    <div class="benefit-desc">Instalação, estrutura de pastas e personalização visual completa</div>
+                </div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
+                <div>
+                    <div class="benefit-title">Sync Gratuito</div>
+                    <div class="benefit-desc">Sincronize entre PC e celular sem pagar Obsidian Sync</div>
+                </div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10"/><circle cx="12" cy="12" r="3"/></svg></div>
+                <div>
+                    <div class="benefit-title">Obsidian + IA</div>
+                    <div class="benefit-desc">Integração com Claude: sua IA organiza, conecta e sugere ideias</div>
+                </div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+                <div>
+                    <div class="benefit-title">Vault Pronto</div>
+                    <div class="benefit-desc">Estrutura pré-montada + templates + 10 prompts de IA para usar hoje</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MID CTA -->
+<div class="mid-cta">
+    <a href="https://pay.cakto.com.br/32724jq_966963" class="cta-btn">Quero organizar minha vida com IA</a>
+    <p class="cta-sub" style="margin-top: 12px;">Acesso imediato + vault pré-configurado</p>
+</div>
+
+<!-- 10 CHAPTERS -->
+<section class="section-alt">
+    <div class="section">
+        <div class="section-divider"></div>
+        <h2 class="section-title">Os <span class="gradient-text">10 capítulos</span> do guia</h2>
+        <ul class="method-list">
+            <li class="method-item"><div class="method-num">1</div><div class="method-name">O que é Obsidian e Por que Você Precisa Dele</div></li>
+            <li class="method-item"><div class="method-num">2</div><div class="method-name">Instalação e Primeiro Contato</div></li>
+            <li class="method-item"><div class="method-num">3</div><div class="method-name">Seu Primeiro Segundo Cérebro: Estrutura de Núcleos</div></li>
+            <li class="method-item"><div class="method-num">4</div><div class="method-name">Wikilinks, Tags e Frontmatter: Conectando Ideias</div></li>
+            <li class="method-item"><div class="method-num">5</div><div class="method-name">Sync Gratuito: Seus Dados em Todos os Dispositivos</div></li>
+            <li class="method-item"><div class="method-num">6</div><div class="method-name">Visual Profissional: Temas, Cores e CSS</div></li>
+            <li class="method-item"><div class="method-num">7</div><div class="method-name">Os 10 Plugins que Transformam o Obsidian</div></li>
+            <li class="method-item"><div class="method-num">8</div><div class="method-name">Obsidian + IA: Seu Cérebro Turbinado com Claude</div></li>
+            <li class="method-item"><div class="method-num">9</div><div class="method-name">Autogerenciamento: Hábitos, Projetos e Metas</div></li>
+            <li class="method-item"><div class="method-num">10</div><div class="method-name">Templates Prontos e Vault Inicial</div></li>
+        </ul>
+    </div>
+</section>
+
+<!-- BONUS -->
+<section>
+    <div class="section">
+        <div class="section-divider"></div>
+        <h2 class="section-title">Bônus <span class="gradient-text">inclusos</span></h2>
+        <div class="bonus-card">
+            <div class="bonus-badge">Bônus 1</div>
+            <div class="bonus-title">10 Prompts Claude + Obsidian</div>
+            <div class="bonus-desc">Prompts prontos para copiar e colar: organizador de notas, review semanal automática, conector de ideias, gerador de daily note e mais.</div>
+        </div>
+        <div class="bonus-card">
+            <div class="bonus-badge">Bônus 2</div>
+            <div class="bonus-title">Vault Pré-Configurado</div>
+            <div class="bonus-desc">Arquivo .zip com a estrutura de núcleos pronta, 5 templates de notas e 10 CSS snippets. É só abrir no Obsidian e começar.</div>
+        </div>
+    </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="section-alt">
+    <div class="section">
+        <div class="section-divider"></div>
+        <h2 class="section-title">O que estao <span class="gradient-text">dizendo</span></h2>
+        <div class="testimonial">
+            <div class="testimonial-stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <p class="testimonial-text">"Já tinha instalado o Obsidian três vezes e sempre desistia. Esse guia me fez entender a lógica dos núcleos e wikilinks. Em 30 minutos já estava funcionando."</p>
+            <div class="testimonial-author">Marcos T., 32 anos, Desenvolvedor</div>
+        </div>
+        <div class="testimonial">
+            <div class="testimonial-stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <p class="testimonial-text">"Migrei do Notion seguindo o capítulo 5 e sincronizei pelo OneDrive sem pagar nada. A parte de IA com o Claude é o futuro — nunca vi isso em português."</p>
+            <div class="testimonial-author">Juliana F., 28 anos, Designer</div>
+        </div>
+        <div class="testimonial">
+            <div class="testimonial-stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <p class="testimonial-text">"Os 10 prompts de IA do bonus valem mais que o ebook inteiro. Pedi pro Claude organizar minhas 200 notas soltas e em 5 minutos estava tudo no lugar."</p>
+            <div class="testimonial-author">Ricardo L., 41 anos, Consultor</div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section>
+    <div class="section">
+        <div class="section-divider"></div>
+        <h2 class="section-title">Perguntas <span class="gradient-text">frequentes</span></h2>
+        <div class="faq-item">
+            <div class="faq-q">O que exatamente eu vou receber?</div>
+            <div class="faq-a">Um arquivo PDF com 76 páginas (guia passo a passo), um vault pré-configurado (.zip) e 10 prompts de IA. Tudo é entregue digitalmente após a compra.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Preciso saber programar?</div>
+            <div class="faq-a">Não. O guia ensina tudo com prints e passo a passo. O Obsidian é um app visual — você não precisa escrever código.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">O Obsidian é gratuito?</div>
+            <div class="faq-a">Sim, 100%. O Obsidian é gratuito para uso pessoal. O guia ensina como sincronizar entre dispositivos também de graça.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Isso é um curso em vídeo?</div>
+            <div class="faq-a">Não. É um ebook em PDF. Você lê no celular, tablet ou computador no seu ritmo. Sem aulas, sem login, sem prazo.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Qual a diferença pra cursos de R$288?</div>
+            <div class="faq-a">Cursos em vídeo sobre Obsidian custam R$150-288 e não ensinam integração com IA. Este guia é mais direto, mais barato e cobre Obsidian + Claude — algo que nenhum curso BR oferece.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Tem garantia?</div>
+            <div class="faq-a">Sim, 7 dias de garantia incondicional. Se não gostar, devolvemos 100% do seu dinheiro. Sem perguntas.</div>
+        </div>
+    </div>
+</section>
+
+<!-- AUTHOR -->
+<section class="section-alt">
+    <div class="section">
+        <div class="section-divider"></div>
+        <h2 class="section-title">Quem <span class="gradient-text">criou</span> este guia</h2>
+        <div class="author-box">
+            <div class="author-avatar">PV</div>
+            <div>
+                <div class="author-name">Equipe Ponto de Virada</div>
+                <div class="author-desc">Usamos Obsidian + Claude Code diariamente para gerenciar projetos, documentação e ideias. Este guia é o resultado de meses de prática real, condensado em 76 páginas práticas.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- OFFER -->
+<section class="offer-section">
+    <div class="section-divider"></div>
+    <h2 class="section-title">Garanta o seu <span class="gradient-text">agora</span></h2>
+    <div class="price-tag">
+        <span class="price-anchor">De R$97,00</span>
+    </div>
+    <p class="price-current">R$<span class="accent">32</span>,90</p>
+    <div class="price-savings">Economia de 66%</div>
+    <br>
+    <a href="https://pay.cakto.com.br/32724jq_966963" class="cta-btn">Quero meu guia agora</a>
+    <p class="cta-sub">Pagamento seguro via PIX ou cartão em até 3x</p>
+    <div class="guarantee">
+        <div class="guarantee-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10" stroke-width="2"/></svg></div>
+        <div class="guarantee-text"><strong>Garantia de 7 dias.</strong> Se por qualquer motivo você não ficar satisfeito, devolvemos 100% do seu dinheiro. Sem perguntas.</div>
+    </div>
+    <div class="security-row">
+        <div class="security-item"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Compra segura</div>
+        <div class="security-item"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Acesso imediato</div>
+        <div class="security-item"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> PIX ou cartão 3x</div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+    <p>Obsidian Inteligente &copy; 2026 — Todos os direitos reservados</p>
+    <p>Este produto é vendido pela Cakto. Ao clicar em comprar você será direcionado para um ambiente seguro de pagamento.</p>
+</div>
+
+<!-- FLOATING CTA -->
+<div class="floating-cta" id="floatingCta">
+    <a href="https://pay.cakto.com.br/32724jq_966963" class="cta-btn">Quero meu guia — R$32,90</a>
+</div>
+
+<script>
+const floatingCta = document.getElementById('floatingCta');
+window.addEventListener('scroll', () => {
+    floatingCta.style.display = window.scrollY > 600 ? 'block' : 'none';
+}, { passive: true });
+</script>
+
+</body>
+</html>
