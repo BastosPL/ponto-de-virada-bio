@@ -41,6 +41,10 @@ module.exports = async (req, res) => {
 
   const body = req.body || {};
 
+  // DEBUG TEMPORÁRIO — remover após localizar onde a Hotmart v2.0.0 envia o hottok
+  console.log('[hotmart-webhook][DEBUG] headers:', JSON.stringify(req.headers));
+  console.log('[hotmart-webhook][DEBUG] body:', JSON.stringify(body));
+
   if (body.hottok !== process.env.HOTMART_HOTTOK) {
     console.warn('[hotmart-webhook] hottok inválido, requisição rejeitada');
     res.status(401).json({ error: 'invalid hottok' });
