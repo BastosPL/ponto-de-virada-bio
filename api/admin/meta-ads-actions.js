@@ -1,3 +1,4 @@
+// trigger redeploy — GitHub API degradada, forçando novo evento via webhook
 const crypto = require('crypto');
 const {
   getAdSetTargeting,
