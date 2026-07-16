@@ -20,7 +20,16 @@ module.exports = async (req, res) => {
   }
 
   const providedSecret = req.headers['x-admin-secret'];
-  if (!isValidSecret(providedSecret, process.env.META_ADMIN_API_SECRET)) {
+  const expectedSecret = process.env.META_ADMIN_API_SECRET;
+
+  // DEBUG TEMPORÁRIO — remover após confirmar autenticação funcionando.
+  // Nunca loga o valor, só metadados suficientes pra achar espaço/quebra de linha.
+  console.log('[meta-ads-actions][DEBUG] env var presente:', typeof expectedSecret !== 'undefined');
+  console.log('[meta-ads-actions][DEBUG] header presente:', typeof providedSecret !== 'undefined');
+  console.log('[meta-ads-actions][DEBUG] tamanho provided/expected:', (providedSecret || '').length, '/', (expectedSecret || '').length);
+  console.log('[meta-ads-actions][DEBUG] últimos char codes provided/expected:', [...(providedSecret || '').slice(-2)].map(c => c.charCodeAt(0)), [...(expectedSecret || '').slice(-2)].map(c => c.charCodeAt(0)));
+
+  if (!isValidSecret(providedSecret, expectedSecret)) {
     res.status(401).json({ error: 'invalid or missing X-Admin-Secret' });
     return;
   }
