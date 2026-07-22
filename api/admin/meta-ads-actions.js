@@ -9,6 +9,7 @@ const {
   updateAdSetOptimizationGoal,
   createAdSet,
   createAd,
+  getAdsInAdSet,
 } = require('../../lib/meta-marketing-api');
 
 function isValidSecret(provided, expected) {
@@ -38,6 +39,12 @@ module.exports = async (req, res) => {
     switch (action) {
       case 'get_ad_set_targeting': {
         const result = await getAdSetTargeting(params.adSetId);
+        res.status(200).json(result);
+        return;
+      }
+
+      case 'get_ads_in_adset': {
+        const result = await getAdsInAdSet(params.adSetId);
         res.status(200).json(result);
         return;
       }
