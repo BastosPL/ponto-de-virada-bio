@@ -566,6 +566,32 @@
             pointer-events: none;
         }
 
+        .urgency-bar {
+            background: var(--danger-surface);
+            border: 1px solid rgba(239,68,68,0.2);
+            border-radius: 10px;
+            padding: 14px 20px;
+            text-align: center;
+            max-width: 420px;
+            margin: 0 auto 24px;
+        }
+
+        .urgency-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .urgency-timer {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-variant-numeric: tabular-nums;
+            margin-top: 4px;
+        }
+
         .price-tag {
             display: inline-flex;
             align-items: center;
@@ -952,6 +978,10 @@
 <section class="offer-section">
     <div class="section-divider"></div>
     <h2 class="section-title">Garanta o seu <span class="gradient-text">agora</span></h2>
+    <div class="urgency-bar">
+        <div class="urgency-text">Preço promocional por tempo limitado</div>
+        <div class="urgency-timer" id="urgencyTimer">23:59:59</div>
+    </div>
     <div class="price-tag">
         <span class="price-anchor">De R$97,00</span>
     </div>
@@ -987,6 +1017,25 @@ const floatingCta = document.getElementById('floatingCta');
 window.addEventListener('scroll', () => {
     floatingCta.style.display = window.scrollY > 600 ? 'block' : 'none';
 }, { passive: true });
+
+// Urgency timer — reseta diariamente à meia-noite
+function startTimer() {
+    const timer = document.getElementById('urgencyTimer');
+    if (!timer) return;
+    function update() {
+        const now = new Date();
+        const end = new Date(now);
+        end.setHours(23, 59, 59, 999);
+        const diff = end - now;
+        const h = String(Math.floor(diff / 3600000)).padStart(2, '0');
+        const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+        const s = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+        timer.textContent = h + ':' + m + ':' + s;
+    }
+    update();
+    setInterval(update, 1000);
+}
+startTimer();
 </script>
 
 </body>
