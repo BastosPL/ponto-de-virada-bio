@@ -6,6 +6,7 @@ const {
   getAdStatus,
   pauseAd,
   getAdInsights,
+  updateAdSetOptimizationGoal,
 } = require('../../lib/meta-marketing-api');
 
 function isValidSecret(provided, expected) {
@@ -57,6 +58,28 @@ module.exports = async (req, res) => {
           return;
         }
         const result = await restrictPlacementsToManual(params.adSetId);
+        res.status(200).json({ executed: true, ...result });
+        return;
+      }
+
+      case 'update_optimization_goal': {
+        if (!confirm) {
+          const current = await getAdSetTargeting(params.adSetId);
+          res.status(200).json({
+            dry_run: true,
+            would_execute: `POST /${params.adSetId} { optimization_goal: ${params.optimizationGoal}, promoted_object: { pixel_id: ${params.pixelId}, custom_event_type: ${params.customEventType || 'PURCHASE'} } }`,
+            current_optimization_goal: current.optimization_goal,
+            current_promoted_object: current.promoted_object,
+            message: 'Envie novamente com "confirm": true para executar de fato.',
+          });
+          return;
+        }
+        const result = await updateAdSetOptimizationGoal(
+          params.adSetId,
+          params.optimizationGoal,
+          params.pixelId,
+          params.customEventType
+        );
         res.status(200).json({ executed: true, ...result });
         return;
       }
