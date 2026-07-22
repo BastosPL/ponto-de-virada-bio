@@ -7,6 +7,8 @@ const {
   pauseAd,
   getAdInsights,
   updateAdSetOptimizationGoal,
+  createAdSet,
+  createAd,
 } = require('../../lib/meta-marketing-api');
 
 function isValidSecret(provided, expected) {
@@ -81,6 +83,34 @@ module.exports = async (req, res) => {
           params.customEventType
         );
         res.status(200).json({ executed: true, ...result });
+        return;
+      }
+
+      case 'create_ad_set': {
+        if (!confirm) {
+          res.status(200).json({
+            dry_run: true,
+            would_execute: `POST /act_${params.adAccountId}/adsets { campaign_id: ${params.campaignId}, name: "${params.name}", optimization_goal: ${params.optimizationGoal}, billing_event: ${params.billingEvent || 'IMPRESSIONS'}, promoted_object: { pixel_id: ${params.pixelId}, custom_event_type: ${params.customEventType || 'PURCHASE'} }, targeting: ${JSON.stringify(params.targeting)}, status: PAUSED (forçado, não configurável) }`,
+            message: 'Envie novamente com "confirm": true para executar de fato. Sempre criado como PAUSED.',
+          });
+          return;
+        }
+        const result = await createAdSet(params.adAccountId, params);
+        res.status(200).json({ executed: true, status_forced: 'PAUSED', ...result });
+        return;
+      }
+
+      case 'create_ad': {
+        if (!confirm) {
+          res.status(200).json({
+            dry_run: true,
+            would_execute: `POST /act_${params.adAccountId}/ads { adset_id: ${params.adSetId}, name: "${params.name}", creative: { creative_id: ${params.creativeId} }, status: PAUSED (forçado, não configurável) }`,
+            message: 'Envie novamente com "confirm": true para executar de fato. Sempre criado como PAUSED.',
+          });
+          return;
+        }
+        const result = await createAd(params.adAccountId, params);
+        res.status(200).json({ executed: true, status_forced: 'PAUSED', ...result });
         return;
       }
 
