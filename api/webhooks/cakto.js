@@ -16,6 +16,13 @@ function normalizeDigits(value) {
   return (value || '').replace(/\D/g, '');
 }
 
+function isValidSecret(provided, expected) {
+  const a = Buffer.from(provided || '', 'utf8');
+  const b = Buffer.from(expected || '', 'utf8');
+  if (a.length !== b.length) return false;
+  return crypto.timingSafeEqual(a, b);
+}
+
 async function sendPurchaseToMeta(payload) {
   const response = await fetch(
     `https://graph.facebook.com/${GRAPH_API_VERSION}/${DATASET_ID}/events`,
@@ -42,7 +49,7 @@ module.exports = async (req, res) => {
   const body = req.body || {};
 
   // A Cakto manda a chave secreta dentro do body (raiz do JSON), não em header.
-  if (!body.secret || body.secret !== process.env.CAKTO_WEBHOOK_SECRET) {
+  if (!isValidSecret(body.secret, process.env.CAKTO_WEBHOOK_SECRET)) {
     console.warn('[cakto-webhook] secret inválido, requisição rejeitada');
     res.status(401).json({ error: 'invalid secret' });
     return;

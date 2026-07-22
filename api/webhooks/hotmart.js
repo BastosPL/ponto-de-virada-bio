@@ -16,6 +16,13 @@ function normalizePhone(phone) {
   return (phone || '').replace(/\D/g, '');
 }
 
+function isValidSecret(provided, expected) {
+  const a = Buffer.from(provided || '', 'utf8');
+  const b = Buffer.from(expected || '', 'utf8');
+  if (a.length !== b.length) return false;
+  return crypto.timingSafeEqual(a, b);
+}
+
 async function sendPurchaseToMeta(payload) {
   const response = await fetch(
     `https://graph.facebook.com/${GRAPH_API_VERSION}/${DATASET_ID}/events`,
@@ -41,7 +48,7 @@ module.exports = async (req, res) => {
 
   const body = req.body || {};
 
-  if (req.headers['x-hotmart-hottok'] !== process.env.HOTMART_HOTTOK) {
+  if (!isValidSecret(req.headers['x-hotmart-hottok'], process.env.HOTMART_HOTTOK)) {
     console.warn('[hotmart-webhook] hottok inválido, requisição rejeitada');
     res.status(401).json({ error: 'invalid hottok' });
     return;
