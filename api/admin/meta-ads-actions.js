@@ -10,6 +10,9 @@ const {
   createAdSet,
   createAd,
   getAdsInAdSet,
+  uploadAdImage,
+  createAdCreative,
+  createCampaign,
 } = require('../../lib/meta-marketing-api');
 
 function isValidSecret(provided, expected) {
@@ -89,6 +92,42 @@ module.exports = async (req, res) => {
           params.pixelId,
           params.customEventType
         );
+        res.status(200).json({ executed: true, ...result });
+        return;
+      }
+
+      case 'create_campaign': {
+        if (!confirm) {
+          res.status(200).json({
+            dry_run: true,
+            would_execute: `POST /act_${params.adAccountId}/campaigns { name: "${params.name}", objective: ${params.objective}, status: PAUSED (forçado, não configurável) }`,
+            message: 'Envie novamente com "confirm": true para executar de fato. Sempre criado como PAUSED.',
+          });
+          return;
+        }
+        const result = await createCampaign(params.adAccountId, params);
+        res.status(200).json({ executed: true, status_forced: 'PAUSED', ...result });
+        return;
+      }
+
+      case 'upload_ad_image': {
+        // Ação sem gate de confirm: só sobe um arquivo pro repositório de mídia
+        // do Meta e devolve um hash. Não cria peça publicável nem gasta nada.
+        const result = await uploadAdImage(params.adAccountId, params.imagePath);
+        res.status(200).json(result);
+        return;
+      }
+
+      case 'create_ad_creative': {
+        if (!confirm) {
+          res.status(200).json({
+            dry_run: true,
+            would_execute: `POST /act_${params.adAccountId}/adcreatives { name: "${params.name}", link: ${params.link}, headline: "${params.headline}" }`,
+            message: 'Envie novamente com "confirm": true para executar de fato. Não gasta nada sozinho — só cria a peça.',
+          });
+          return;
+        }
+        const result = await createAdCreative(params.adAccountId, params);
         res.status(200).json({ executed: true, ...result });
         return;
       }
