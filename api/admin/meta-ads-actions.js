@@ -1,4 +1,5 @@
-// trigger redeploy — GitHub API degradada, forçando novo evento via webhook
+const fs = require('fs');
+const path = require('path');
 const crypto = require('crypto');
 const {
   getAdSetTargeting,
@@ -40,6 +41,22 @@ module.exports = async (req, res) => {
 
   try {
     switch (action) {
+      case 'debug_fs': {
+        // DEBUG TEMPORÁRIO — remover depois de resolver o caminho das imagens em produção.
+        const candidates = {
+          cwd: process.cwd(),
+          dirname: __dirname,
+          cwd_assets_exists: fs.existsSync(path.join(process.cwd(), 'assets')),
+          dirname_assets_exists: fs.existsSync(path.join(__dirname, '../../assets')),
+        };
+        try { candidates.cwd_listing = fs.readdirSync(process.cwd()); } catch (e) { candidates.cwd_listing_error = e.message; }
+        try { candidates.dirname_listing = fs.readdirSync(__dirname); } catch (e) { candidates.dirname_listing_error = e.message; }
+        try { candidates.cwd_assets_listing = fs.readdirSync(path.join(process.cwd(), 'assets')); } catch (e) { candidates.cwd_assets_error = e.message; }
+        try { candidates.dirname_assets_listing = fs.readdirSync(path.join(__dirname, '../../assets')); } catch (e) { candidates.dirname_assets_error = e.message; }
+        res.status(200).json(candidates);
+        return;
+      }
+
       case 'get_ad_set_targeting': {
         const result = await getAdSetTargeting(params.adSetId);
         res.status(200).json(result);
