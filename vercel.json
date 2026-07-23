@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/admin/meta-ads-actions.js": {
+      "includeFiles": "assets/**"
+    }
+  }
+}
