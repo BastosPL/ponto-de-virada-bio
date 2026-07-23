@@ -12,6 +12,7 @@ const {
   uploadAdImage,
   createAdCreative,
   createCampaign,
+  getPageInstagramAccount,
 } = require('../../lib/meta-marketing-api');
 
 function isValidSecret(provided, expected) {
@@ -39,6 +40,12 @@ module.exports = async (req, res) => {
 
   try {
     switch (action) {
+      case 'get_page_instagram': {
+        const result = await getPageInstagramAccount(params.pageId);
+        res.status(200).json(result);
+        return;
+      }
+
       case 'get_ad_set_targeting': {
         const result = await getAdSetTargeting(params.adSetId);
         res.status(200).json(result);
