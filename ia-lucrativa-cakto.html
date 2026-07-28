@@ -12,19 +12,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1703579497354195');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1703579497354195&ev=PageView&noscript=1"
-    /></noscript>
+    <!-- Meta Pixel só carrega após consentimento — ver cookie-consent.js -->
+    <script>window.__PIXEL_ID__ = '1703579497354195';</script>
+    <script src="cookie-consent.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -562,7 +552,7 @@
     <div class="mockup-wrapper">
         <img src="https://files.catbox.moe/8v8ks6.png" alt="Ebook IA Lucrativa" loading="eager">
     </div>
-    <a href="https://pay.cakto.com.br/3careas_966924" onclick="typeof fbq==='function'&&fbq('track','InitiateCheckout',{content_name:'IA Lucrativa',value:37.90,currency:'BRL'})" class="cta-btn">QUERO MEU EBOOK AGORA</a>
+    <a href="https://pay.cakto.com.br/3careas_966924" onclick="window.pvTrackEvent&&window.pvTrackEvent('InitiateCheckout',{content_name:'IA Lucrativa',value:37.90,currency:'BRL'})" class="cta-btn">QUERO MEU EBOOK AGORA</a>
     <p class="cta-sub">Acesso imediato por apenas R$37,90</p>
 </section>
 
@@ -651,7 +641,7 @@
 
 <!-- MID CTA -->
 <div class="mid-cta">
-    <a href="https://pay.cakto.com.br/3careas_966924" onclick="typeof fbq==='function'&&fbq('track','InitiateCheckout',{content_name:'IA Lucrativa',value:37.90,currency:'BRL'})" class="cta-btn">QUERO COMEÇAR A LUCRAR COM IA</a>
+    <a href="https://pay.cakto.com.br/3careas_966924" onclick="window.pvTrackEvent&&window.pvTrackEvent('InitiateCheckout',{content_name:'IA Lucrativa',value:37.90,currency:'BRL'})" class="cta-btn">QUERO COMEÇAR A LUCRAR COM IA</a>
     <p class="cta-sub">Acesso imediato + 50 prompts prontos</p>
 </div>
 
@@ -754,7 +744,7 @@
 
 <!-- MID CTA 2 -->
 <div class="mid-cta">
-    <a href="https://pay.cakto.com.br/3careas_966924" onclick="typeof fbq==='function'&&fbq('track','InitiateCheckout',{content_name:'IA Lucrativa',value:37.90,currency:'BRL'})" class="cta-btn">SIM, QUERO LUCRAR COM IA</a>
+    <a href="https://pay.cakto.com.br/3careas_966924" onclick="window.pvTrackEvent&&window.pvTrackEvent('InitiateCheckout',{content_name:'IA Lucrativa',value:37.90,currency:'BRL'})" class="cta-btn">SIM, QUERO LUCRAR COM IA</a>
     <p class="cta-sub">Por apenas R$37,90 — menos que um jantar</p>
 </div>
 
@@ -783,7 +773,7 @@
     <p class="price-current">R$<span>37</span>,90</p>
     <div class="price-savings">Economia de 61%</div>
     <br>
-    <a href="https://pay.cakto.com.br/3careas_966924" onclick="typeof fbq==='function'&&fbq('track','InitiateCheckout',{content_name:'IA Lucrativa',value:37.90,currency:'BRL'})" class="cta-btn">QUERO MEU EBOOK AGORA</a>
+    <a href="https://pay.cakto.com.br/3careas_966924" onclick="window.pvTrackEvent&&window.pvTrackEvent('InitiateCheckout',{content_name:'IA Lucrativa',value:37.90,currency:'BRL'})" class="cta-btn">QUERO MEU EBOOK AGORA</a>
     <p class="cta-sub">Pagamento seguro via PIX ou cartão em até 3x</p>
     <div class="guarantee">
         <div class="guarantee-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10" stroke-width="2"/></svg></div>
@@ -800,11 +790,12 @@
 <div class="footer">
     <p>IA Lucrativa &copy; 2026 — Todos os direitos reservados</p>
     <p style="margin-top:6px;">Este produto é vendido pela Cakto. Ao clicar em comprar você será direcionado para um ambiente seguro de pagamento.</p>
+    <p style="margin-top:10px;"><a href="privacidade.html" style="color:#666;">Privacidade</a> &middot; <a href="termos.html" style="color:#666;">Termos de Uso</a></p>
 </div>
 
 <!-- FLOATING CTA -->
 <div class="floating-cta" id="floatingCta">
-    <a href="https://pay.cakto.com.br/3careas_966924" onclick="typeof fbq==='function'&&fbq('track','InitiateCheckout',{content_name:'IA Lucrativa',value:37.90,currency:'BRL'})" class="cta-btn">QUERO MEU EBOOK — R$37,90</a>
+    <a href="https://pay.cakto.com.br/3careas_966924" onclick="window.pvTrackEvent&&window.pvTrackEvent('InitiateCheckout',{content_name:'IA Lucrativa',value:37.90,currency:'BRL'})" class="cta-btn">QUERO MEU EBOOK — R$37,90</a>
 </div>
 
 <script>
