@@ -14,6 +14,8 @@ const {
   createCampaign,
   getPageInstagramAccount,
   getAdAccountInstagramAccounts,
+  activateEntity,
+  getEntityStatus,
 } = require('../../lib/meta-marketing-api');
 
 function isValidSecret(provided, expected) {
@@ -170,6 +172,31 @@ module.exports = async (req, res) => {
         }
         const result = await createAd(params.adAccountId, params);
         res.status(200).json({ executed: true, status_forced: 'PAUSED', ...result });
+        return;
+      }
+
+      case 'get_entity_status': {
+        const result = await getEntityStatus(params.entityId);
+        res.status(200).json(result);
+        return;
+      }
+
+      case 'activate_entity': {
+        // Liga gasto de verdade — dry-run obrigatório, sem exceção, mesmo
+        // já tendo aprovação prévia combinada por mensagem.
+        if (!confirm) {
+          const current = await getEntityStatus(params.entityId);
+          res.status(200).json({
+            dry_run: true,
+            would_execute: `POST /${params.entityId} { status: ACTIVE }`,
+            current_status: current.status,
+            current_name: current.name,
+            message: 'Envie novamente com "confirm": true para executar de fato. Isso ativa gasto real.',
+          });
+          return;
+        }
+        const result = await activateEntity(params.entityId);
+        res.status(200).json({ executed: true, ...result });
         return;
       }
 
