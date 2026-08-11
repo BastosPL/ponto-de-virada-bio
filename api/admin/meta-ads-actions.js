@@ -16,6 +16,7 @@ const {
   getAdAccountInstagramAccounts,
   activateEntity,
   getEntityStatus,
+  getDatasetStats,
 } = require('../../lib/meta-marketing-api');
 
 function isValidSecret(provided, expected) {
@@ -172,6 +173,12 @@ module.exports = async (req, res) => {
         }
         const result = await createAd(params.adAccountId, params);
         res.status(200).json({ executed: true, status_forced: 'PAUSED', ...result });
+        return;
+      }
+
+      case 'get_dataset_stats': {
+        const result = await getDatasetStats(params.datasetId);
+        res.status(200).json(result);
         return;
       }
 
