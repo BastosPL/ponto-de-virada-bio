@@ -16,6 +16,20 @@ function normalizeDigits(value) {
   return (value || '').replace(/\D/g, '');
 }
 
+// Exigência do Meta a partir de ~07/10/2026: eventos CAPI sem
+// event_source_url passam a ser bloqueados. Mapeia pelo nome do produto
+// (mais confiável que o UUID interno da Cakto, que não documentamos).
+function resolveEventSourceUrl(productName) {
+  const name = (productName || '').toLowerCase();
+  if (name.includes('obsidian')) {
+    return 'https://ponto-de-virada-bio.vercel.app/obsidian-cakto.html';
+  }
+  if (name.includes('lucrativa')) {
+    return 'https://ponto-de-virada-bio.vercel.app/ia-lucrativa-cakto.html';
+  }
+  return 'https://ponto-de-virada-bio.vercel.app/';
+}
+
 function isValidSecret(provided, expected) {
   const a = Buffer.from(provided || '', 'utf8');
   const b = Buffer.from(expected || '', 'utf8');
@@ -94,6 +108,7 @@ module.exports = async (req, res) => {
     // refId é o identificador da transação (não muda entre main/orderbump) — usar pra dedup.
     event_id: `cakto-${mainItem.refId}`,
     action_source: 'website',
+    event_source_url: resolveEventSourceUrl(mainItem.product?.name),
     user_data: {
       em: customer.email ? [sha256(customer.email)] : undefined,
       ph: customer.phone ? [sha256(normalizeDigits(customer.phone))] : undefined,
