@@ -114,52 +114,13 @@
 
         .book-mockup {
             position: relative;
-            width: 210px;
-            height: 290px;
+            width: 230px;
             margin: 0 auto 32px;
-            background: linear-gradient(150deg, #0d1420 0%, #060a12 100%);
-            border: 1px solid var(--border-accent);
-            border-radius: 6px;
-            box-shadow: 0 30px 70px rgba(34,211,238,0.12), inset 0 0 0 1px rgba(255,255,255,0.03);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            padding: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(34,211,238,0.18);
         }
-
-        .book-mockup::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 10px;
-            background: linear-gradient(90deg, rgba(34,211,238,0.25), transparent);
-        }
-
-        .book-mockup .icon {
-            width: 46px; height: 46px;
-            border: 1.5px solid var(--accent);
-            border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .book-mockup .icon svg { width: 24px; height: 24px; stroke: var(--accent); stroke-width: 1.6; fill: none; }
-
-        .book-mockup .title {
-            font-size: 13px;
-            font-weight: 800;
-            color: #fff;
-            text-align: center;
-            letter-spacing: 0.3px;
-        }
-        .book-mockup .title span { color: var(--accent); display: block; }
-
-        .book-mockup .pages-tag {
-            font-size: 10px;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+        .book-mockup img { display: block; width: 100%; height: auto; }
 
         .cta-btn {
             display: block;
@@ -248,6 +209,8 @@
         }
         .bonus-title { font-size: 19px; font-weight: 800; color: #fff; margin-bottom: 8px; }
         .bonus-desc { font-size: 14.5px; color: var(--text-secondary); }
+        .bonus-cover { width: 120px; margin: 0 auto 18px; border-radius: 6px; overflow: hidden; box-shadow: 0 16px 40px rgba(34,211,238,0.15); }
+        .bonus-cover img { display: block; width: 100%; height: auto; }
 
         .audience-section { background: var(--bg-secondary); }
         .audience-item { display: flex; gap: 12px; align-items: center; padding: 11px 0; }
@@ -297,9 +260,7 @@
     <h1>7 Rotas Práticas para <span>Monetizar com Inteligência Artificial</span></h1>
     <p class="hero-sub">Um guia para escolher uma rota compatível com seu momento, estruturar um primeiro teste e executar um ciclo de 30 dias usando IA com contexto, critério e revisão humana.</p>
     <div class="book-mockup">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
-        <div class="title">IA LUCRATIVA<span>Edição 2026</span></div>
-        <div class="pages-tag">78 páginas + bônus</div>
+        <img src="https://ponto-de-virada-bio.vercel.app/assets/ia-lucrativa-v3-capa-principal.png" alt="Capa do ebook IA Lucrativa, edição 2026" loading="eager">
     </div>
     <a href="https://pay.cakto.com.br/3careas_966924" onclick="typeof fbq==='function'&&fbq('track','InitiateCheckout',{content_name:'IA Lucrativa',value:47.90,currency:'BRL'})" class="cta-btn">QUERO CONHECER AS 7 ROTAS</a>
     <p class="cta-sub">Acesso digital imediato — R$47,90</p>
@@ -374,6 +335,7 @@
 <section class="bonus-section">
     <div class="section">
         <div class="bonus-card">
+            <div class="bonus-cover"><img src="https://ponto-de-virada-bio.vercel.app/assets/ia-lucrativa-v3-capa-bonus-prompts.png" alt="Capa do bônus 50 Prompts" loading="lazy"></div>
             <div class="bonus-badge">Bônus incluso</div>
             <div class="bonus-title">50 Prompts Reformulados (28 páginas)</div>
             <div class="bonus-desc">Prompts organizados por grupo — Freelancer, Conteúdo, Infoprodutos, Automação e Micro-SaaS, Marketing e vendas — com orientação de preenchimento, contextualização e revisão. Não são "copie e cole": cada um vem com instrução de como aplicar de verdade.</div>
