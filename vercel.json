@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/ia-lucrativa.html",
+      "destination": "/ia-lucrativa-cakto.html",
+      "permanent": true
+    }
+  ],
   "functions": {
     "api/admin/meta-ads-actions.js": {
       "includeFiles": "assets/**"
