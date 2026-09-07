@@ -20,6 +20,12 @@
     document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1703579497354195');
     fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+        content_name: 'IA Lucrativa',
+        content_type: 'product',
+        value: 47.90,
+        currency: 'BRL'
+    });
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1703579497354195&ev=PageView&noscript=1"
@@ -399,6 +405,15 @@
 </div>
 
 <script>
+const checkoutBaseUrl = 'https://pay.cakto.com.br/3careas_966924';
+const incomingParams = new URLSearchParams(window.location.search);
+
+document.querySelectorAll('a[href^="' + checkoutBaseUrl + '"]').forEach((link) => {
+    const checkoutUrl = new URL(link.href);
+    incomingParams.forEach((value, key) => checkoutUrl.searchParams.set(key, value));
+    link.href = checkoutUrl.toString();
+});
+
 const floatingCta = document.getElementById('floatingCta');
 window.addEventListener('scroll', () => {
     floatingCta.style.display = window.scrollY > 600 ? 'block' : 'none';
