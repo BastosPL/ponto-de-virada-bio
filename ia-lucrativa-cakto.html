@@ -256,40 +256,321 @@
 
         @media (min-width: 600px) { .method-step { flex: 1 1 auto; } }
     </style>
+    <style id="premium-refresh">
+        :root {
+            --bg-primary: #030914;
+            --bg-secondary: #071527;
+            --bg-card: rgba(10, 27, 48, 0.78);
+            --border-subtle: rgba(89, 183, 255, 0.14);
+            --border-accent: rgba(0, 216, 255, 0.34);
+            --text-primary: #f4faff;
+            --text-secondary: #b9c9d9;
+            --text-muted: #7890a8;
+            --accent: #00d8ff;
+            --accent-light: #8aeaff;
+            --accent-surface: rgba(0, 216, 255, 0.08);
+            --success: #00d8ff;
+            --success-surface: rgba(0, 216, 255, 0.08);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            background:
+                radial-gradient(circle at 12% 14%, rgba(22,120,255,.11), transparent 30rem),
+                radial-gradient(circle at 88% 44%, rgba(0,216,255,.07), transparent 34rem),
+                #030914;
+            color: var(--text-secondary);
+        }
+        a:focus-visible { outline: 3px solid rgba(0,216,255,.55); outline-offset: 4px; }
+
+        .circuit-bg {
+            opacity: .18;
+            background-image:
+                linear-gradient(rgba(0,216,255,.16) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,216,255,.16) 1px, transparent 1px);
+            background-size: 72px 72px;
+            mask-image: radial-gradient(ellipse 78% 64% at 62% 22%, #000 0%, transparent 72%);
+        }
+
+        .hero {
+            min-height: 760px;
+            padding: 78px 28px 68px;
+            text-align: left;
+            background:
+                radial-gradient(circle at 76% 38%, rgba(0,216,255,.14), transparent 24rem),
+                linear-gradient(180deg, rgba(9,33,58,.62), rgba(3,9,20,.96) 92%);
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            left: 50%; bottom: 0;
+            width: min(1180px,90vw); height: 1px;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg,transparent,var(--border-accent),transparent);
+        }
+        .hero-inner {
+            position: relative; z-index: 1;
+            width: min(1120px,100%); margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0,1.18fr) minmax(300px,.82fr);
+            align-items: center;
+            gap: clamp(46px,7vw,96px);
+        }
+        .hero-copy { text-align: left; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 9px;
+            border-radius: 7px; padding: 8px 14px; margin-bottom: 24px;
+        }
+        .hero-badge::before {
+            content: ''; width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent); box-shadow: 0 0 14px rgba(0,216,255,.95);
+        }
+        .hero h1 {
+            max-width: 720px; margin: 0 0 24px;
+            font-size: clamp(40px,5.6vw,70px); line-height: 1.02;
+            font-weight: 900; letter-spacing: -.055em;
+        }
+        .hero h1 span { text-shadow: 0 0 32px rgba(0,216,255,.16); }
+        .hero-sub {
+            max-width: 640px; margin: 0 0 32px;
+            font-size: clamp(16px,1.7vw,19px); line-height: 1.72;
+        }
+        .hero-actions { max-width: 470px; }
+        .hero-visual {
+            position: relative; min-height: 585px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .hero-visual::before,.hero-visual::after {
+            content: ''; position: absolute; border-radius: 50%;
+            border: 1px solid rgba(0,216,255,.18); pointer-events: none;
+        }
+        .hero-visual::before { width: 460px; height: 460px; }
+        .hero-visual::after { width: 330px; height: 330px; border-color: rgba(22,120,255,.25); }
+        .book-mockup {
+            z-index: 2; width: min(345px,78vw); margin: 0;
+            border: 1px solid rgba(89,183,255,.22); border-radius: 10px;
+            box-shadow: 0 38px 100px rgba(0,18,55,.74),0 0 60px rgba(0,216,255,.15);
+            transform: perspective(1100px) rotateY(-7deg) rotateX(1deg);
+        }
+        .visual-label {
+            position: static; z-index: 3; margin-top: 20px;
+            padding: 13px 16px; border: 1px solid var(--border-accent); border-radius: 10px;
+            background: rgba(3,9,20,.82); backdrop-filter: blur(12px);
+            color: #f4faff; font-size: 12px; font-weight: 800;
+            letter-spacing: .08em; text-transform: uppercase; transform: none;
+        }
+        .visual-label span { color: var(--accent); }
+
+        .cta-btn {
+            max-width: 470px; margin: 0 0 13px; padding: 18px 30px;
+            background: linear-gradient(135deg,#16dcff,#1793ff);
+            color: #02101d; border: 1px solid rgba(159,238,255,.8); border-radius: 9px;
+            box-shadow: 0 12px 34px rgba(0,143,255,.24),inset 0 1px 0 rgba(255,255,255,.42);
+        }
+        .cta-btn:hover { box-shadow: 0 18px 44px rgba(0,143,255,.34); }
+
+        .fact-strip {
+            position: relative; z-index: 2;
+            width: min(1040px,calc(100% - 48px)); margin: -28px auto 0;
+            display: grid; grid-template-columns: repeat(4,1fr);
+            border: 1px solid var(--border-subtle); border-radius: 14px;
+            background: rgba(7,21,39,.92); backdrop-filter: blur(16px);
+            box-shadow: 0 24px 80px rgba(0,46,108,.34); overflow: hidden;
+        }
+        .fact { padding: 21px 18px; text-align: center; border-right: 1px solid var(--border-subtle); }
+        .fact:last-child { border-right: 0; }
+        .fact strong { display: block; color: #f4faff; font-size: 20px; line-height: 1.2; }
+        .fact span { display: block; color: var(--text-muted); font-size: 12px; margin-top: 5px; text-transform: uppercase; letter-spacing: .08em; }
+
+        .section { width: min(1040px,100%); max-width: none; padding: 88px 28px; }
+        .section-title { font-size: clamp(30px,4vw,46px); line-height: 1.08; margin-bottom: 42px; letter-spacing: -.04em; }
+        .pain-section,.routes-section,.author-section {
+            background: linear-gradient(180deg,rgba(7,21,39,.66),rgba(3,9,20,.45));
+            border-block: 1px solid rgba(89,183,255,.06);
+        }
+        .method-section,.bonus-section,.audience-section,.faq-section { background: transparent; }
+
+        .pain-section .section { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+        .pain-section .section-title { grid-column: 1/-1; }
+        .pain-item {
+            min-height: 132px; padding: 22px; border: 1px solid var(--border-subtle); border-radius: 12px;
+            background: linear-gradient(145deg,rgba(10,27,48,.9),rgba(4,13,27,.78));
+        }
+        .pain-icon {
+            width: 42px; height: 42px; border: 1px solid var(--border-accent); border-radius: 8px;
+            background: var(--accent-surface);
+        }
+        .pain-icon svg { width: 21px; height: 21px; stroke: var(--accent); stroke-width: 1.8; }
+        .pain-text { font-size: 15px; color: var(--text-secondary); }
+
+        .method-flow { position: relative; display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-bottom: 28px; }
+        .method-flow::before {
+            content: ''; position: absolute; top: 36px; left: 9%; right: 9%; height: 1px;
+            background: linear-gradient(90deg,transparent,var(--accent),#1678ff,transparent); opacity: .7;
+        }
+        .method-step {
+            position: relative; z-index: 1; min-width: 0; padding: 22px 12px 18px;
+            border: 1px solid var(--border-subtle); border-radius: 12px;
+            background: linear-gradient(180deg,rgba(10,27,48,.98),rgba(5,16,32,.94));
+        }
+        .method-step .letter {
+            width: 30px; height: 30px; margin: 0 auto 12px; display: grid; place-items: center;
+            border: 1px solid var(--border-accent); border-radius: 7px; background: #05172a;
+            font-size: 15px;
+        }
+        .method-step .label { color: #f4faff; font-size: 13px; font-weight: 700; }
+        .method-desc { max-width: 700px; font-size: 16px; }
+
+        .route-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+        .route-item {
+            min-height: 74px; padding: 17px 20px; border: 1px solid var(--border-subtle); border-radius: 11px;
+            background: rgba(5,16,32,.74);
+        }
+        .route-item:last-child { grid-column: 1/-1; width: calc(50% - 6px); justify-self: center; }
+        .route-num { width: 38px; height: 38px; border: 1px solid var(--border-accent); border-radius: 8px; }
+        .route-name { color: #f4faff; }
+
+        .bonus-card {
+            display: grid; grid-template-columns: 210px minmax(0,1fr); align-items: center;
+            gap: clamp(28px,6vw,68px); padding: clamp(28px,5vw,52px); text-align: left;
+            border: 1px solid var(--border-accent); border-radius: 16px;
+            background: radial-gradient(circle at 16% 34%,rgba(0,216,255,.12),transparent 18rem),linear-gradient(135deg,rgba(10,27,48,.97),rgba(4,13,27,.96));
+            box-shadow: 0 24px 80px rgba(0,46,108,.34);
+        }
+        .bonus-cover { grid-row: 1/span 3; width: 100%; margin: 0; border-radius: 9px; }
+        .bonus-badge { width: fit-content; border-radius: 7px; padding: 7px 12px; }
+        .bonus-title { font-size: clamp(24px,3vw,34px); line-height: 1.12; }
+        .bonus-desc { font-size: 15px; }
+
+        .audience-section .section,.faq-section .section,.author-section .section { max-width: 860px; }
+        .audience-item { padding: 15px 16px; border-bottom: 1px solid var(--border-subtle); }
+        .audience-check { width: 29px; height: 29px; border: 1px solid var(--border-accent); border-radius: 7px; background: var(--accent-surface); }
+        .audience-check svg { stroke: var(--accent); }
+        .audience-text { font-size: 16px; }
+        .faq-item { padding: 22px 4px; border-color: var(--border-subtle); }
+        .faq-q { font-size: 17px; }
+        .faq-a { font-size: 15px; }
+        .author-box { padding: 26px; border-radius: 14px; background: linear-gradient(135deg,rgba(10,27,48,.92),rgba(4,13,27,.88)); }
+        .author-avatar { width: 58px; height: 58px; border: 1px solid var(--border-accent); border-radius: 10px; background: var(--accent-surface); color: var(--accent); font-size: 17px; }
+
+        .offer-section {
+            width: min(920px,calc(100% - 48px)); margin: 88px auto; padding: clamp(42px,7vw,70px) 28px;
+            border: 1px solid var(--border-accent); border-radius: 18px;
+            background: radial-gradient(circle at 50% 0%,rgba(0,216,255,.14),transparent 24rem),linear-gradient(180deg,rgba(10,27,48,.98),rgba(3,9,20,.98));
+            box-shadow: 0 24px 80px rgba(0,46,108,.34);
+        }
+        .offer-section .section-title { margin-bottom: 16px; }
+        .offer-section .cta-btn { margin-inline: auto; }
+        .price-current { font-size: clamp(50px,8vw,68px); letter-spacing: -.05em; }
+        .guarantee { border-color: var(--border-accent); background: var(--accent-surface); }
+        .guarantee-icon svg { stroke: var(--accent); }
+        .security-item svg { color: #58b9ff; }
+        .footer { background: #020711; border-top: 1px solid rgba(89,183,255,.08); }
+
+        .floating-cta { background: rgba(3,9,20,.94); border-color: var(--border-accent); }
+        .floating-cta .cta-btn { margin: 0 auto; max-width: 520px; }
+
+        @media (max-width: 860px) {
+            .hero { min-height: auto; padding-top: 58px; }
+            .hero-inner { grid-template-columns: 1fr; gap: 34px; }
+            .hero-copy { text-align: center; }
+            .hero-sub,.hero-actions { margin-inline: auto; }
+            .hero-visual { min-height: 510px; }
+            .visual-label { position: static; margin-top: 20px; transform: none; }
+            .fact-strip { grid-template-columns: repeat(2,1fr); }
+            .fact:nth-child(2) { border-right: 0; }
+            .fact:nth-child(-n+2) { border-bottom: 1px solid var(--border-subtle); }
+            .pain-section .section,.route-list { grid-template-columns: 1fr; }
+            .route-item:last-child { grid-column: auto; width: 100%; }
+            .bonus-card { grid-template-columns: 170px minmax(0,1fr); }
+        }
+        @media (max-width: 640px) {
+            .hero { padding: 46px 20px 52px; }
+            .hero h1 { font-size: clamp(35px,10.5vw,48px); }
+            .hero-sub { font-size: 16px; line-height: 1.65; }
+            .hero-visual { min-height: 470px; margin-top: 18px; }
+            .hero-visual::before { width: 360px; height: 360px; }
+            .hero-visual::after { width: 270px; height: 270px; }
+            .book-mockup { width: min(280px,76vw); }
+            .visual-label {
+                position: static;
+                margin-top: 18px;
+                transform: none;
+                white-space: nowrap;
+                font-size: 10px;
+            }
+            .fact-strip { width: calc(100% - 32px); margin-top: -20px; }
+            .fact { padding: 17px 10px; }
+            .fact strong { font-size: 17px; }
+            .fact span { font-size: 10px; }
+            .section { padding: 68px 20px; }
+            .section-title { margin-bottom: 32px; }
+            .pain-item { min-height: auto; padding: 19px; }
+            .method-flow { grid-template-columns: repeat(2,1fr); }
+            .method-flow::before { display: none; }
+            .method-step:last-child { grid-column: 1/-1; }
+            .bonus-card { grid-template-columns: 1fr; text-align: center; }
+            .bonus-cover { grid-row: auto; width: min(190px,62vw); margin: 0 auto; }
+            .bonus-badge { margin: 0 auto; }
+            .offer-section { width: calc(100% - 28px); margin: 68px auto; padding-inline: 20px; }
+            .floating-cta.is-visible { display: block; }
+            body { padding-bottom: 74px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .cta-btn { transition: none; }
+        }
+    </style>
 </head>
 <body>
 
 <!-- HERO -->
 <section class="hero">
     <div class="circuit-bg"></div>
-    <div class="hero-badge">Edição 2026</div>
-    <h1>7 Rotas Práticas para <span>Monetizar com Inteligência Artificial</span></h1>
-    <p class="hero-sub">Um guia para escolher uma rota compatível com seu momento, estruturar um primeiro teste e executar um ciclo de 30 dias usando IA com contexto, critério e revisão humana.</p>
-    <div class="book-mockup">
-        <img src="https://ponto-de-virada-bio.vercel.app/assets/ia-lucrativa-v3-capa-principal.png" alt="Capa do ebook IA Lucrativa, edição 2026" loading="eager">
+    <div class="hero-inner">
+        <div class="hero-copy">
+            <div class="hero-badge">Edição 2026</div>
+            <h1>7 Rotas Práticas para <span>Monetizar com Inteligência Artificial</span></h1>
+            <p class="hero-sub">Um guia para escolher uma rota compatível com seu momento, estruturar um primeiro teste e executar um ciclo de 30 dias usando IA com contexto, critério e revisão humana.</p>
+            <div class="hero-actions">
+                <a href="https://pay.cakto.com.br/3careas_966924" onclick="typeof fbq==='function'&&fbq('track','InitiateCheckout',{content_name:'IA Lucrativa',value:47.90,currency:'BRL'})" class="cta-btn">QUERO CONHECER AS 7 ROTAS</a>
+                <p class="cta-sub">Acesso digital imediato — R$47,90</p>
+            </div>
+        </div>
+        <div class="hero-visual" aria-label="Apresentação do e-book IA Lucrativa">
+            <div class="book-mockup">
+                <img src="https://ponto-de-virada-bio.vercel.app/assets/ia-lucrativa-v3-capa-principal.png" alt="Capa do ebook IA Lucrativa, edição 2026" loading="eager">
+            </div>
+            <div class="visual-label"><span>7 rotas</span> · 1 ponto de partida</div>
+        </div>
     </div>
-    <a href="https://pay.cakto.com.br/3careas_966924" onclick="typeof fbq==='function'&&fbq('track','InitiateCheckout',{content_name:'IA Lucrativa',value:47.90,currency:'BRL'})" class="cta-btn">QUERO CONHECER AS 7 ROTAS</a>
-    <p class="cta-sub">Acesso digital imediato — R$47,90</p>
 </section>
+
+<div class="fact-strip" aria-label="Conteúdo da IA Lucrativa">
+    <div class="fact"><strong>78 páginas</strong><span>Guia principal</span></div>
+    <div class="fact"><strong>7 rotas</strong><span>Aplicações práticas</span></div>
+    <div class="fact"><strong>30 dias</strong><span>Plano de execução</span></div>
+    <div class="fact"><strong>50 prompts</strong><span>Bônus aplicável</span></div>
+</div>
 
 <!-- PAIN POINTS -->
 <section class="pain-section">
     <div class="section">
         <h2 class="section-title">Isso soa <span>familiar</span>?</h2>
         <div class="pain-item">
-            <div class="pain-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg></div>
+            <div class="pain-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="7" height="14" rx="1"/><rect x="14" y="5" width="7" height="5" rx="1"/><rect x="14" y="14" width="7" height="5" rx="1"/><path d="M10 9h4M10 16h4"/></svg></div>
             <p class="pain-text"><strong>Encontra muitas ferramentas e possibilidades</strong> e tem dificuldade para escolher um ponto de partida</p>
         </div>
         <div class="pain-item">
-            <div class="pain-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+            <div class="pain-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="16 8 14 14 8 16 10 10 16 8"/></svg></div>
             <p class="pain-text"><strong>Quer explorar aplicações comerciais de IA</strong>, mas não sabe por qual caminho começar</p>
         </div>
         <div class="pain-item">
-            <div class="pain-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
+            <div class="pain-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v5M21 12h-5M12 21v-5M3 12h5"/></svg></div>
             <p class="pain-text"><strong>Já explorou diferentes possibilidades online</strong>, mas ainda não encontrou um método claro para validar uma direção</p>
         </div>
         <div class="pain-item">
-            <div class="pain-icon"><svg viewBox="0 0 24 24"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="12" r="10"/><line x1="12" y1="17" x2="12" y2="17.01"/></svg></div>
+            <div class="pain-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="7 9 10 12 7 15"/><path d="M12 15h5"/></svg></div>
             <p class="pain-text"><strong>Vê gente usando IA pra trabalhar</strong> mas acha que é coisa de programador</p>
         </div>
     </div>
@@ -416,7 +697,7 @@ document.querySelectorAll('a[href^="' + checkoutBaseUrl + '"]').forEach((link) =
 
 const floatingCta = document.getElementById('floatingCta');
 window.addEventListener('scroll', () => {
-    floatingCta.style.display = window.scrollY > 600 ? 'block' : 'none';
+    floatingCta.classList.toggle('is-visible', window.scrollY > 600);
 }, { passive: true });
 </script>
 
