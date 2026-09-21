@@ -9,11 +9,6 @@ function sha256(value) {
 }
 
 module.exports = async (req, res) => {
-  if (req.method !== 'POST') {
-    res.status(405).json({ ok: false, error: 'method not allowed' });
-    return;
-  }
-
   if (req.query?.key !== VERIFY_KEY) {
     res.status(404).json({ ok: false });
     return;
