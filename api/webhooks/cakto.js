@@ -21,13 +21,26 @@ function normalizeDigits(value) {
 // (mais confiável que o UUID interno da Cakto, que não documentamos).
 function resolveEventSourceUrl(productName) {
   const name = (productName || '').toLowerCase();
+
   if (name.includes('obsidian')) {
-    return 'https://ponto-de-virada-bio.vercel.app/obsidian-cakto.html';
+    return 'https://ponto-de-virada-bio.vercel.app/obsidian.html';
   }
+
   if (name.includes('lucrativa')) {
     return 'https://ponto-de-virada-bio.vercel.app/ia-lucrativa-cakto.html';
   }
-  return 'https://ponto-de-virada-bio.vercel.app/';
+
+  if (name.includes('claude')) {
+    return 'https://domine-o-claude-inteiro.vercel.app/';
+  }
+
+  if (name.includes('implantação') || name.includes('implantacao')) {
+    return 'https://kit-de-implantacao-ia.cfn5jhbwnz.chatgpt.site/';
+  }
+
+  // Evita atribuir produtos PxB desconhecidos à raiz deste projeto,
+  // que pertence a outro produto e pode contaminar a classificação do dataset.
+  return 'https://ponto-de-virada-bio.vercel.app/ebooks.html';
 }
 
 function isValidSecret(provided, expected) {
