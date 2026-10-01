@@ -6,6 +6,28 @@
       "permanent": true
     }
   ],
+  "rewrites": [
+    {
+      "source": "/domine/api/admin/:path*",
+      "destination": "/__domine-not-found"
+    },
+    {
+      "source": "/domine/homologacao/:path*",
+      "destination": "/__domine-not-found"
+    },
+    {
+      "source": "/domine",
+      "destination": "https://atualizacoes-domine-prototipo.pxb05.chatgpt.site/"
+    },
+    {
+      "source": "/domine/:path*",
+      "destination": "https://atualizacoes-domine-prototipo.pxb05.chatgpt.site/:path*"
+    },
+    {
+      "source": "/_next/:path*",
+      "destination": "https://atualizacoes-domine-prototipo.pxb05.chatgpt.site/_next/:path*"
+    }
+  ],
   "functions": {
     "api/admin/meta-ads-actions.js": {
       "includeFiles": "assets/**"
