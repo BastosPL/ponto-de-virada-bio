@@ -1,11 +1,3 @@
-const crypto = require('crypto');
-
-function timingSafeEqual(provided, expected) {
-  const a = Buffer.from(provided || '', 'utf8');
-  const b = Buffer.from(expected || '', 'utf8');
-  return a.length === b.length && crypto.timingSafeEqual(a, b);
-}
-
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (char) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;',
@@ -18,16 +10,11 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'method not allowed' });
   }
 
-  const authorization = req.headers.authorization || '';
-  const provided = authorization.startsWith('Bearer ') ? authorization.slice(7) : '';
-  if (!timingSafeEqual(provided, process.env.CAKTO_WEBHOOK_SECRET)) {
-    return res.status(401).json({ error: 'unauthorized' });
-  }
-
-  const { to, link } = req.body || {};
+  const { to, link, deliveryToken } = req.body || {};
   if (
     typeof to !== 'string' ||
     typeof link !== 'string' ||
+    typeof deliveryToken !== 'string' ||
     to.length > 254 ||
     !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)
   ) {
@@ -46,6 +33,15 @@ module.exports = async (req, res) => {
     !magicUrl.searchParams.get('token')
   ) {
     return res.status(400).json({ error: 'invalid link' });
+  }
+
+  const authorizationResponse = await fetch('https://pontodeviradaoficial.com.br/domine/api/auth/authorize-delivery', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ token: deliveryToken, email: to, link: magicUrl.toString() }),
+  });
+  if (!authorizationResponse.ok) {
+    return res.status(403).json({ error: 'delivery not authorized' });
   }
 
   if (!process.env.RESEND_API_KEY) {
