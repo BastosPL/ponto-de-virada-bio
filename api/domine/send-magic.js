@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
 
   const authorization = req.headers.authorization || '';
   const provided = authorization.startsWith('Bearer ') ? authorization.slice(7) : '';
-  if (!timingSafeEqual(provided, process.env.DOMINE_MAILER_SECRET)) {
+  if (!timingSafeEqual(provided, process.env.CAKTO_WEBHOOK_SECRET)) {
     return res.status(401).json({ error: 'unauthorized' });
   }
 
